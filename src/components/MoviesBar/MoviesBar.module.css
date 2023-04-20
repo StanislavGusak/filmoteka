@@ -1,0 +1,17 @@
+.moviebar__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    column-gap: 10px;
+}
+
+.moviebar__list__item {
+    margin-bottom: 10px;
+}
+
+.moviebar__list__item a {
+    color: var(--color);
+    font-size: 16px;
+    text-decoration: underline;
+}

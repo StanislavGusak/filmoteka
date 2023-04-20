@@ -1,0 +1,16 @@
+.movies__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.movies__item {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    max-width: 320px;
+    padding: 10px;
+    background: var(--background-movies-item);
+}

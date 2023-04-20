@@ -1,0 +1,27 @@
+.navigation {
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    color: var(--border-color);
+    cursor: default;
+}
+
+.navigation__link {
+    color: var(--color);
+    text-transform: uppercase;
+}
+
+.navigation__link:hover {
+    color: var(--hover-color-text);
+}

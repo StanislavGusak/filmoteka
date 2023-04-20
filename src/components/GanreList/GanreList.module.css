@@ -1,0 +1,31 @@
+.ganre__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.ganre__list__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    background: var(--background-movies-item);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    color: var(--color);
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.ganre__list__item p {
+    transition: var(--transition);
+}
+
+.ganre__list__item:hover p {
+    transform: scale(1.1);
+}

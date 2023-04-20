@@ -1,0 +1,50 @@
+.header {
+    background: var(--background-header);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    box-shadow: var(--box-shadow-header);
+}
+
+.navigation__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color);
+    font-size: 1.5rem;
+    margin-top: 10px;
+    position: relative;
+}
+
+.logo span {
+    color: var(--color);
+}
+
+.logo__react {
+    color: var(--color);
+    margin-right: 5px;
+    animation: rotate 5s infinite linear;
+    -webkit-animation: rotate 5s infinite linear;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
