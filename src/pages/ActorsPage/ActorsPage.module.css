@@ -1,0 +1,33 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 50px;
+}
+
+.page {
+    margin: 0 0.5rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.30rem;
+    color: var(--color);
+}
+
+.active {
+    background-color: var(--color);
+    color: var(--hover-color-text);
+}
+
+.previous,
+.next {
+    margin: 0 0.5rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--color);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
