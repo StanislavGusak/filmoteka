@@ -4,6 +4,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../Header/Header";
 import { Loader, StyledScrollToTop } from './App.styled';
+import RestictedRoute from "../RestictedRoute/RestictedRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
@@ -15,7 +17,9 @@ const ActorsPage = lazy(() => import('../../pages/ActorsPage/ActorsPage'));
 const ExpectedMoviePage = lazy(() => import('../../pages/ExpectedMoviePage/ExpectedMoviePage'));
 const TopRatedPage = lazy(() => import('../../pages/TopRatedPage/TopRatedPage'));
 const ActorsMoviePage = lazy(() => import('../../pages/ActorsMoviePage/ActorsMoviePage'));
-
+const LibraryPage = lazy(() => import('../../pages/LibraryPage/LibraryPage'));
+const RegistrationPage = lazy(() => import('../../pages/RegistrationPage/RegistrationPage'));
+const LogInPage = lazy(() => import('../../pages/LogInPage/LogInPage'));
 
 const App = () => {
     return (
@@ -27,6 +31,24 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="movies" element={<MoviesPage />} />
+                    <Route
+                        path="registration"
+                        element={
+                            <RestictedRoute redirectTo="/" component={<RegistrationPage />} />
+                        }
+                    />
+                    <Route
+                        path="login"
+                        element={
+                            <RestictedRoute redirectTo="/" component={<LogInPage />} />
+                        }
+                    />
+                    <Route
+                        path="library"
+                        element={
+                            <PrivateRoute redirectTo="/login" component={<LibraryPage />} />
+                        }
+                    ></Route>
                     <Route path="movie/actors/" element={<ActorsPage />} />
                     <Route path="/actors/movies/:id" element={<ActorsMoviePage />}></Route>
                     <Route path="movie/top-rated/" element={<TopRatedPage />} />

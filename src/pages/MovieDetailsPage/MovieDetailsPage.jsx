@@ -1,11 +1,15 @@
-import { useState, useEffect, Suspense } from "react";
-import { useLocation, useParams, Link, Outlet, useNavigate } from "react-router-dom";
+import { useState, useEffect, Suspense, useContext } from "react";
+import { useLocation, useParams, Link, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { GiReturnArrow } from 'react-icons/gi';
-import Container from "../../components/Container/Container";
+import { animateScroll as scroll } from 'react-scroll';
 import YouTube from 'react-youtube';
 import apiTheMovieDB from "../../services/kinoApi";
+import Container from "../../components/Container/Container";
 import BackDown from "../../components/BackDown/BackDown";
+import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
+import authSelector from '../../redux/auth/auth-selector';
 import posterImg from '../../images/poster.jpg';
 import styles from './MovieDetailsPage.module.css';
 import {
@@ -23,28 +27,27 @@ import {
     ReviewList,
     VideoBackdrop,
     AddMoviesBtn,
+    AuthBtnText
 } from './MovieDetailsPage.styled';
 
-const MovieDetailsPage = () => {
+const MovieDetalis = () => {
     const [movie, setMovie] = useState([]);
-    const [favourites, setFavourites] = useState([]);
-    const [isFavourite, setIsFavourite] = useState(false);
+    const [favorites, setFavorites] = useState([]);
+    const [isFavorite, setIsFavorite] = useState(false);
     const [trailerId, setTrailerId] = useState(null);
     const [urlModal, setUrlModal] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    const { selectedLanguage } = useContext(LanguageContext);
 
     const { movieId } = useParams();
     const location = useLocation();
     const backLink = location.state?.from ?? '/';
 
-    const navigate = useNavigate();
+    const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
 
-    const handleGoBack = () => {
-        navigate('/movie/actors/');
-    };
-
-    const handleFetchTrailer = () => {
+    function handleFetchTrailer() {
         apiTheMovieDB
-            .fetchTrailerMovies(movieId)
+            .fetchTrailerMovies(movieId, selectedLanguage.iso_639_1)
             .then(videos => {
                 const trailer = videos.find(video => video.type === 'Trailer');
                 if (trailer) {
@@ -59,62 +62,63 @@ const MovieDetailsPage = () => {
     }
 
     useEffect(() => {
-        const favouritesFromStorage = localStorage.getItem('favourites');
-        if (favouritesFromStorage) {
-            setFavourites(JSON.parse(favouritesFromStorage));
+        const favoritesFromStorage = localStorage.getItem('favorites');
+        if (favoritesFromStorage) {
+            setFavorites(JSON.parse(favoritesFromStorage));
         }
     }, []);
 
     useEffect(() => {
-        setIsFavourite(favourites.some(fav => fav.id === movie.id));
-    }, [favourites, movie.id]);
+        setIsFavorite(favorites.some(fav => fav.id === movie.id));
+    }, [favorites, movie.id]);
 
-    const toggleFavourites = () => {
+    function toggleFavorites() {
         const movieToAdd = {
             id: movie.id,
             title: movie.title,
             poster_path: movie.poster_path,
-            vote_average: movie.vote_average.toFixed(1),
+            vote_average: movie.vote_average,
             release_date: movie.release_date.slice(0, 4),
         };
-        if (isFavourite) {
-            const newFavourites = favourites.filter(fav => fav.id !== movie.id);
-            setFavourites(newFavourites);
-            localStorage.setItem('favourites', JSON.stringify(newFavourites));
-            setIsFavourite(false);
-            toast.success('Film added to the library');
+        if (isFavorite) {
+            const newFavorites = favorites.filter(fav => fav.id !== movie.id);
+            setFavorites(newFavorites);
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+            setIsFavorite(false);
+            toast.success('Film removed from the library');
         } else {
-            const newFavourites = [...favourites, movieToAdd];
-            setFavourites(newFavourites);
-            localStorage.setItem('favourites', JSON.stringify(newFavourites));
-            setIsFavourite(true);
+            const newFavorites = [...favorites, movieToAdd];
+            setFavorites(newFavorites);
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+            setIsFavorite(true);
             toast.success('Film added to the library');
         }
     }
 
     useEffect(() => {
-        apiTheMovieDB.fetchMovieDetails(movieId)
+        apiTheMovieDB
+            .fetchMovieDetails(movieId, selectedLanguage.iso_639_1)
             .then(data => {
                 setMovie(data);
             })
             .catch('error');
-    }, [movieId]);
+    }, [movieId, selectedLanguage]);
 
     useEffect(() => {
         window.addEventListener('keydown', clickKeyDown);
 
         return () => {
-            window.addEventListener('keydown', clickKeyDown);
-        }
-    }, []);
+            window.removeEventListener('keydown', clickKeyDown);
+        };
+    });
 
-    const closeModal = () => {
+    function closeModal() {
         setUrlModal(false);
         setTrailerId(null);
-        document.removeEventListener('keydown', clickKeyDown);
-    };
+        document.body.style.overflow = 'auto';
+    }
 
-    const clickBackDrop = e => {
+    const clickBackdrop = e => {
         if (e.currentTarget === e.target) {
             closeModal();
         }
@@ -123,6 +127,17 @@ const MovieDetailsPage = () => {
     const clickKeyDown = e => {
         if (e.code === 'Escape') {
             closeModal();
+        }
+    };
+
+    const henndleCastAndReviewSmooth = () => {
+        if (!isClicked) {
+            scroll.scrollToBottom({
+                duration: 2000,
+                smooth: 'easeInOutQuad',
+                offset: 0.2,
+            });
+            setIsClicked(true);
         }
     };
 
@@ -138,9 +153,10 @@ const MovieDetailsPage = () => {
                         </BtnBackDetailsWrapper>
                         <DetailsWrapper>
                             <PosterMovie
-                                src={movie.backdrop_path
-                                    ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
-                                    : posterImg
+                                src={
+                                    movie.backdrop_path
+                                        ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
+                                        : posterImg
                                 }
                                 alt={movie.title}
                             />
@@ -162,32 +178,43 @@ const MovieDetailsPage = () => {
                                         ))}
                                 </GenreListDetails>
                                 <ReviewList>
-                                    <li className={styles.review__list__item}>
+                                    <li className={styles.reviewiLstItem}>
                                         <Link
                                             to="cast"
                                             state={location.state}
                                             className={styles.cast}
+                                            onClick={henndleCastAndReviewSmooth}
                                         >
                                             Cast
                                         </Link>
                                     </li>
-                                    <li className={styles.review__list__item}>
-                                        <Link
-                                            to="review"
-                                            state={location.state}
-                                            className={styles.review}
-                                        >
-                                            Rewiew
-                                        </Link>
+
+                                    <li className={styles.reviewiLstItem}>
+                                        {isLoggedIn && (
+                                            <Link
+                                                to="review"
+                                                state={location.state}
+                                                className={styles.review}
+                                                onClick={henndleCastAndReviewSmooth}
+                                            >
+                                                Rewiew
+                                            </Link>
+                                        )}
                                     </li>
-                                    <li className={styles.review__list__item}>
-                                        <Link to={'/library'} onClick={toggleFavourites}>
-                                            <AddMoviesBtn type="button">
-                                                {isFavourite
+                                    <li className={styles.reviewiLstItem}>
+                                        <Link to={'/library'} onClick={toggleFavorites}>
+                                            <AddMoviesBtn disabled={!isLoggedIn} type="button">
+                                                {isFavorite
                                                     ? 'Remove from library'
                                                     : 'Add movie to library'}
                                             </AddMoviesBtn>
                                         </Link>
+                                        {!isLoggedIn && (
+                                            <AuthBtnText>
+                                                Register or log in to be able to add a movie to your
+                                                library
+                                            </AuthBtnText>
+                                        )}
                                     </li>
                                 </ReviewList>
                             </ColumnInfo>
@@ -204,7 +231,7 @@ const MovieDetailsPage = () => {
                                     onClick={handleFetchTrailer}
                                 />
                                 {urlModal && (
-                                    <VideoBackdrop onClick={clickBackDrop}>
+                                    <VideoBackdrop onClick={clickBackdrop}>
                                         <GiReturnArrow
                                             className={styles.icon__back__modal}
                                             onClick={closeModal}
@@ -233,11 +260,14 @@ const MovieDetailsPage = () => {
                                 )}
                             </ColumnImg>
                         </DetailsWrapper>
+                        <Suspense>
+                            <Outlet />
+                        </Suspense>
                     </Container>
                 </section>
             )}
         </>
-    )
-};
+    );
+}
 
-export default MovieDetailsPage;
+export default MovieDetalis;

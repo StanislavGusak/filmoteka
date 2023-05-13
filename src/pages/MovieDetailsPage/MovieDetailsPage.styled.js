@@ -220,3 +220,9 @@ export const AddMoviesBtn = styled.button`
   border: 1px solid var(--border-color);
   border-radius: 5px;
 `;
+
+export const AuthBtnText = styled.p`
+  font-size: 10px;
+  color: var(--color);
+  margin-top: 5px;
+`;
