@@ -1,7 +1,10 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import themeReduser from './themeSlise';
+import { configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import { persisteAuthReducer } from './auth/auth-slice';
+import themeReducer from './themeSlise';
 import {
     persistStore,
+    persistReducer,
     FLUSH,
     REHYDRATE,
     PAUSE,
@@ -9,28 +12,25 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist';
-import persistReducer from "redux-persist/es/persistReducer";
-import { persisteAuthReducer } from '../redux/auth/auth-slice';
-import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
     key: 'root',
     storage,
 };
 
-const persistedReduser = persistReducer(persistConfig, themeReduser);
+const persistedReducer = persistReducer(persistConfig, themeReducer);
 
 const store = configureStore({
     reducer: {
         auth: persisteAuthReducer,
-        theme: persistedReduser,
+        theme: persistedReducer,
     },
-    middleware: getDefaultMiddleware => 
-    getDefaultMiddleware({
-        serializableCheck: {
-            ignoreActions: [FLUSH, REHYDRATE, PAUSE, PURGE, PERSIST, REGISTER],
-        },
-    }),
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
 });
 
 export const persistor = persistStore(store);

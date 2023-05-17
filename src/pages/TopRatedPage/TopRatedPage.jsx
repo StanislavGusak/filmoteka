@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import MoviesList from "../../components/MoviesList/MoviesList";
 import BackDown from "../../components/BackDown/BackDown";
 import { TitleTopRating, CardsLoader, BtnWrapperTop } from './TopRatedPage.styled';
 import css from '../ActorsPage/ActorsPage.module.css';
+import { LanguageContext } from '../../components/LanguageContext/LanguageContext';
 
 const TopRatedPage = () => {
     const [movies, setMovies] = useState([]);
@@ -17,13 +18,15 @@ const TopRatedPage = () => {
     const [totalPage, setTotalPage] = useState(0);
     const location = useLocation();
     const backLink = location.state?.from ?? '/';
+    const { selectedLanguage } = useContext(LanguageContext);
 
     useEffect(() => {
         apiTheMovieDB
-        .fetchMoviesByRaiting(currentPage)
+        .fetchMoviesByRaiting(currentPage, selectedLanguage.iso_639_1)
         .then(({ results, total_pages }) => {
             setMovies(results);
             setTotalPage(Math.min(total_pages, 500));
+
             if(results.length === 0) {
                 toast.error("sorry, that's all the actors we could find");
             }
@@ -32,7 +35,7 @@ const TopRatedPage = () => {
             setError(error);
         })
         .finally(() => setLoading(false));
-    }, [currentPage]);
+    }, [currentPage, selectedLanguage]);
 
     if(error) {
         return <p>{error.message}</p>

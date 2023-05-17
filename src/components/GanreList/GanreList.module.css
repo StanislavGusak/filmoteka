@@ -1,4 +1,4 @@
-.ganre__list {
+.ganreList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -7,7 +7,7 @@
     margin-top: 20px;
 }
 
-.ganre__list__item {
+.ganreListItem {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,10 +22,10 @@
     text-transform: uppercase;
 }
 
-.ganre__list__item p {
+.ganreListItem p {
     transition: var(--transition);
 }
 
-.ganre__list__item:hover p {
+.ganreListItem:hover p {
     transform: scale(1.1);
 }

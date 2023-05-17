@@ -8,6 +8,7 @@ import YouTube from 'react-youtube';
 import apiTheMovieDB from "../../services/kinoApi";
 import Container from "../../components/Container/Container";
 import BackDown from "../../components/BackDown/BackDown";
+import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
 import authSelector from '../../redux/auth/auth-selector';
 import posterImg from '../../images/poster.jpg';
@@ -264,6 +265,7 @@ const MovieDetalis = () => {
                             <Outlet />
                         </Suspense>
                     </Container>
+                    <Footer />
                 </section>
             )}
         </>

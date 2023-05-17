@@ -1,10 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import { toast } from 'react-toastify';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Container from '../../components/Container/Container';
 import MoviesList from "../../components/MoviesList/MoviesList";
 import GanreList from "../../components/GanreList/GanreList";
 import ExpectedMoviesList from '../../components/ExpectedMoviesList/ExpectedMoviesList';
+import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
 import apiTheMovieDB from "../../services/kinoApi";
 import styles from './HomePage.module.css';
 
@@ -14,12 +15,13 @@ const HomePage = () => {
     const [isFetching, setIsFetching] = useState(false);
     const [genres, setGenres] = useState([]);
     const [mounted, setMounted] = useState(false);
+    const { selectedLanguage } = useContext(LanguageContext);
 
     const fetchMovies = useCallback(page => {
         setIsFetching(true);
 
         apiTheMovieDB
-            .fetchTrending(page)
+            .fetchTrending(page, selectedLanguage.iso_639_1)
             .then(newMovies => {
                 setIsFetching(false);
                 if (newMovies.length === 0) {
@@ -33,7 +35,7 @@ const HomePage = () => {
             .catch(error => {
                 setIsFetching(false)
             });
-    }, []);
+    }, [selectedLanguage.iso_639_1]);
 
     useEffect(() => {
         setMounted(true);
@@ -42,18 +44,24 @@ const HomePage = () => {
 
     useEffect(() => {
         if (mounted && movies.length === 0) {
-            fetchMovies(currentPage);
+            fetchMovies(currentPage, selectedLanguage.iso_639_1);
         }
-    }, [currentPage, fetchMovies, movies.length, mounted]);
+    }, [
+        currentPage,
+        fetchMovies,
+        movies.length,
+        mounted,
+        selectedLanguage.iso_639_1
+    ]);
 
     useEffect(() => {
         apiTheMovieDB
-            .fetchAllGenres()
+            .fetchAllGenres(selectedLanguage.iso_639_1)
             .then(data => {
                 setGenres(data);
             })
             .catch('error');
-    }, []);
+    }, [selectedLanguage.iso_639_1]);
 
     return (
         <Container>

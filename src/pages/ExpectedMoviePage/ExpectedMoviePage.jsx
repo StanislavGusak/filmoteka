@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactPaginate from 'react-paginate';
@@ -7,6 +7,7 @@ import { CardsLoader, ExpectedTitle, BtnBackExpectedWrapper } from "./ExpectedMo
 import Container from "../../components/Container/Container";
 import BackDown from "../../components/BackDown/BackDown";
 import MoviesList from "../../components/MoviesList/MoviesList";
+import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
 import css from '../ActorsPage/ActorsPage.module.css';
 
 const ExpectedMoviePage =() => {
@@ -17,10 +18,11 @@ const ExpectedMoviePage =() => {
     const [totalPage, setTotalPage] = useState(0);
     const location = useLocation();
     const backLink = location.state?.from ?? '/';
+    const { selectedLanguage } = useContext(LanguageContext);
 
     useEffect(() => {
         apiTheMovieDB
-        .fetchWaitingForMovies(currentPage)
+        .fetchWaitingForMovies(currentPage, selectedLanguage.iso_639_1)
         .then(({results, total_pages}) => {
             setMovies(results);
             setTotalPage(Math.min(total_pages, 500));
@@ -32,7 +34,7 @@ const ExpectedMoviePage =() => {
             setError(error);
         })
         .finally(() => setLoading(false))
-    }, [currentPage]);
+    }, [currentPage, selectedLanguage.iso_639_1]);
 
     if(error) {
         return <p>{error.message}</p>

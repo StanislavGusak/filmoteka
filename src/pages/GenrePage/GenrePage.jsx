@@ -1,44 +1,54 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
 import apiTheMovieDB from "../../services/kinoApi";
 import MoviesList from "../../components/MoviesList/MoviesList";
-import styles from './GenrePage.module.css';
+import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
+import { GenreListMoviesContainer, GenreTitle } from './GenrePage.styled';
 
 const GenrePage = () => {
     const { id } = useParams();
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
+    const { selectedLanguage } = useContext(LanguageContext);
 
     const fetchMovies = useCallback(async () => {
         try {
-            const data = await apiTheMovieDB.fetchByGenre(id, currentPage);
+            const data = await apiTheMovieDB.fetchByGenre(
+                id,
+                currentPage,
+                selectedLanguage.iso_639_1
+            );
             setMovies(prevMovies => [...prevMovies, ...data.results]);
         } catch (error) {
             toast.error('Failed to fetch movies.');
         }
-    }, [id, currentPage]);
+    }, [id, currentPage, selectedLanguage.iso_639_1]);
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const data = await apiTheMovieDB.fetchByGenre(id, 1);
+            const data = await apiTheMovieDB.fetchByGenre(
+                id,
+                1,
+                selectedLanguage.iso_639_1
+            );
             setMovies(data.results);
             setTotalPage(data.total_pages);
         };
         fetchMovies();
-    }, [id]);
+    }, [id, selectedLanguage.iso_639_1]);
 
     useEffect(() => {
-        if(currentPage > 1) {
+        if (currentPage > 1) {
             fetchMovies();
         }
     }, [fetchMovies, currentPage]);
 
     return (
-        <div className={styles.genre__list__container}>
-            <h2 className={styles.genre__title}>Movies by genre</h2>
+        <GenreListMoviesContainer>
+            <GenreTitle>Movies by genre</GenreTitle>
             <InfiniteScroll
                 dataLength={movies.length}
                 next={() => setCurrentPage(currentPage + 1)}
@@ -47,7 +57,7 @@ const GenrePage = () => {
             >
                 <MoviesList movies={movies} />
             </InfiniteScroll>
-        </div>
+        </GenreListMoviesContainer>
     );
 };
 

@@ -1,9 +1,12 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../Header/Header";
-import { Loader, StyledScrollToTop } from './App.styled';
+import { LoaderWraper, StyledScrollToTop, MainLoader } from './App.styled';
+import authOperation from "../../redux/auth/auth-operation";
+import authSelector from "../../redux/auth/auth-selector";
 import RestictedRoute from "../RestictedRoute/RestictedRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -14,6 +17,7 @@ const Reviews = lazy(() => import('../Reviews/Reviews'));
 const Cast = lazy(() => import('../Cast/CastMovie'));
 const GenrePage = lazy(() => import('../../pages/GenrePage/GenrePage'));
 const ActorsPage = lazy(() => import('../../pages/ActorsPage/ActorsPage'));
+const ActorsInfo = lazy(() => import('../ActorsInfo/ActorsInfo'));
 const ExpectedMoviePage = lazy(() => import('../../pages/ExpectedMoviePage/ExpectedMoviePage'));
 const TopRatedPage = lazy(() => import('../../pages/TopRatedPage/TopRatedPage'));
 const ActorsMoviePage = lazy(() => import('../../pages/ActorsMoviePage/ActorsMoviePage'));
@@ -22,42 +26,54 @@ const RegistrationPage = lazy(() => import('../../pages/RegistrationPage/Registr
 const LogInPage = lazy(() => import('../../pages/LogInPage/LogInPage'));
 
 const App = () => {
-    return (
+    const dispatch = useDispatch();
+    const isRefreshing = useSelector(authSelector.getIsRefreshing);
+
+    useEffect(() => {
+        dispatch(authOperation.refreshCurrentUser());
+    }, [dispatch]);
+    return isRefreshing ? (
+        <LoaderWraper>
+            <MainLoader size={350} color="aqua" />
+        </LoaderWraper>
+    ) : (
         <>
             <ToastContainer />
             <Header />
             <StyledScrollToTop smooth />
-            <Suspense fallback={<Loader>Loading...</Loader>}>
+            <Suspense
+                fallback={
+                    <LoaderWraper>
+                        <MainLoader size={350} color="aqua" />
+                    </LoaderWraper>}
+            >
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="movies" element={<MoviesPage />} />
                     <Route
                         path="registration"
-                        element={
-                            <RestictedRoute redirectTo="/" component={<RegistrationPage />} />
-                        }
+                        element={<RestictedRoute redirectTo="/" component={<RegistrationPage />} />}
                     />
                     <Route
                         path="login"
-                        element={
-                            <RestictedRoute redirectTo="/" component={<LogInPage />} />
-                        }
+                        element={<RestictedRoute redirectTo="/" component={<LogInPage />} />}
                     />
                     <Route
                         path="library"
-                        element={
-                            <PrivateRoute redirectTo="/login" component={<LibraryPage />} />
-                        }
-                    ></Route>
+                        element={<PrivateRoute redirectTo="/login" comp onent={<LibraryPage />} />}
+                    />
                     <Route path="movie/actors/" element={<ActorsPage />} />
-                    <Route path="/actors/movies/:id" element={<ActorsMoviePage />}></Route>
+                    <Route path="/actors/movies/:id" element={<ActorsMoviePage />} >
+                        <Route path="actors-info" element={<ActorsInfo />} />
+                    </Route>
                     <Route path="movie/top-rated/" element={<TopRatedPage />} />
-                    <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+                    <Route path="movie/expected-movies/" element={<ExpectedMoviePage />} />
+                    <Route path="/movies/:movieId" element={<MovieDetailsPage />} >
                         <Route path="cast" element={<Cast />} />
                         <Route path="review" element={<Reviews />} />
                     </Route>
                     <Route path="/genre/:id" element={<GenrePage />} />
-                    <Route path="movie/expected-movies/" element={<ExpectedMoviePage />} />
+                    <Route path="*" element={<HomePage />} />
                 </Routes>
             </Suspense>
         </>

@@ -12,18 +12,18 @@ import {
     MoviesYear,
 } from './MoviesItem.styled';
 
-const MoviesItem = ({ poster_path, title, vote_average, release_date }) => {
-    const persentRating = vote_average * 10; // convert 0-10 rating to percentage
-    const goldStars = Math.floor(persentRating / 10); //number of gold star
+function MoviesItem({ poster_path, title, vote_average, release_date }) {
+    const percentRating = vote_average * 10; // convert 0-10 rating to percentage
+    const goldStars = Math.floor(percentRating / 10); // number of gold stars
     // eslint-disable-next-line no-unused-vars
-    const greyStars = 10 - goldStars; // number of grey stars
+    const grayStars = 10 - goldStars; // number of gray stars
 
     // create an array of stars with the appropriate color
     const ratingStars = Array.from({ length: 10 }, (_, i) => {
         if (i < goldStars) {
             return <GoldStar key={`star-${i}`}>&#9733;</GoldStar>;
         } else {
-            return <GrayStar key={`star-${i}`}>&#9733;</GrayStar>
+            return <GrayStar key={`star-${i}`}>&#9733;</GrayStar>;
         }
     });
 
@@ -38,7 +38,7 @@ const MoviesItem = ({ poster_path, title, vote_average, release_date }) => {
     };
 
     const ratingColor = getRatingColor(vote_average);
-    const raitingClassName = `rating-${ratingColor}`;
+    const ratingClassName = `rating-${ratingColor}`;
 
     return (
         <>
@@ -48,17 +48,16 @@ const MoviesItem = ({ poster_path, title, vote_average, release_date }) => {
                         src={
                             poster_path
                                 ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                                : 'https://via.placeholder.com/300x400'
+                                : 'https://dummyimage.com/300x450/fff/aaa'
                         }
                         alt={title}
                         width={300}
-                    >
-                    </MoviesImg>
+                    />
                 </ImgWrapper>
                 <CardTitle>{title ? title : 'Movie without a title'}</CardTitle>
                 <RatingStarsContainer>
                     <RatingText>{vote_average ? ratingStars : 'N/A'}</RatingText>
-                    <RatingBlock className={raitingClassName}>
+                    <RatingBlock className={ratingClassName}>
                         <RatingNumber>
                             {vote_average ? vote_average.toFixed(1) : 'N/A'}
                         </RatingNumber>
@@ -69,7 +68,7 @@ const MoviesItem = ({ poster_path, title, vote_average, release_date }) => {
                 </RatingStarsContainer>
             </CardWrapper>
         </>
-    )
-};
+    );
+}
 
 export default MoviesItem;

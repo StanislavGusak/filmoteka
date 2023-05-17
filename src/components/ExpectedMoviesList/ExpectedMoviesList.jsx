@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Swiper } from 'swiper/react';
 import { toast } from 'react-toastify';
 import { Navigation, Scrollbar } from 'swiper';
 import Container from '../Container/Container';
 import apiTheMovieDB from '../../services/kinoApi';
+import { LanguageContext } from '../LanguageContext/LanguageContext';
 import 'swiper/css';
 import 'swiper/css/navigation'
 import {
+    CardsLoader,
     ExpectedWrapper,
     NavigationButton,
     ExpectedInfoWrapper,
     ExpectedInfoContainer,
     StyledSwiperSlide,
+    SlideFlexWrapper,
     ImgExpectedWrapper,
     ExpectedImg,
     ExpectedTitle,
@@ -20,17 +23,18 @@ import {
     ExpextedYear,
     StyledAiFillFastForward,
     StyledAiFillFastBackward,
-} from './ExpectedMoviesList.styled';
+  } from './ExpectedMoviesList.styled';
 
 const ExpectedMoviesList = () => {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const location = useLocation();
+    const { selectedLanguage } = useContext(LanguageContext);
 
     useEffect(() => {
         apiTheMovieDB
-            .fetchExpectedMovies()
+            .fetchExpectedMovies(selectedLanguage.iso_639_1)
             .then(newMovies => {
                 setMovies(newMovies);
             })
@@ -39,17 +43,16 @@ const ExpectedMoviesList = () => {
                 toast.error('Error');
             })
             .finally(setLoading(false));
-    }, []);
+    }, [selectedLanguage]);
 
     if (error) {
         return <p>{error.message}</p>
     }
-
     return (
         <>
             <Container>
                 {loading ? (
-                    <p>Loading...</p>
+                    <CardsLoader size={50} color="aqua" />
                 ) : (
                     <>
                         <ExpectedWrapper>
@@ -65,15 +68,23 @@ const ExpectedMoviesList = () => {
                                         slidesPerView: 1,
                                     },
                                     480: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 10,
+                                    },
+                                    680: {
                                         slidesPerView: 3,
                                         spaceBetween: 10,
                                     },
                                     768: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 10,
+                                    },
+                                    1000: {
                                         slidesPerView: 4,
                                         spaceBetween: 10,
                                     },
                                     1200: {
-                                        slidesPerView: 6,
+                                        slidesPerView: 5,
                                         spaceBetween: 10,
                                     },
                                 }}
@@ -90,37 +101,41 @@ const ExpectedMoviesList = () => {
                                             }
                                         };
                                         const ratingColor = getRatingColor();
-                                        const ratingClassName = `rating - ${ratingColor}`;
+                                        const ratingClassName = `rating-${ratingColor}`;
                                         return (
                                             <StyledSwiperSlide key={id}>
-                                                <ImgExpectedWrapper>
-                                                    <Link to={`/movies/${id}`} state={{ from: location }}>
-                                                        <ExpectedImg
-                                                            src={
-                                                                poster_path
-                                                                    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                                                                    : 'https://via.placeholder.com/300x400'
-                                                            }
-                                                            alt={title}
-                                                            width={177}
-                                                        />
-                                                    </Link>
-                                                </ImgExpectedWrapper>
-                                                <ExpectedInfoContainer>
-                                                    <ExpectedTitle>
-                                                        {title ? title : 'Movie without a title'}
-                                                    </ExpectedTitle>
-                                                    <ExpectedInfoWrapper>
-                                                        <ExpextedRating className={ratingClassName}>
-                                                            {vote_average ? vote_average.toFixed(1) : 'N/A'}
-                                                        </ExpextedRating>
-                                                        <ExpextedYear>
-                                                            {release_date.slice(0, 4)}
-                                                        </ExpextedYear>
-                                                    </ExpectedInfoWrapper>
-                                                </ExpectedInfoContainer>
+                                                <SlideFlexWrapper>
+                                                    <ImgExpectedWrapper>
+                                                        <Link
+                                                            to={`/movies/${id}`}
+                                                            state={{ from: location }}
+                                                        >
+                                                            <ExpectedImg
+                                                                src={
+                                                                    poster_path
+                                                                        ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                                                                        : 'https://via.placeholder.com/300x400'
+                                                                }
+                                                                alt={title}
+                                                            />
+                                                        </Link>
+                                                    </ImgExpectedWrapper>
+                                                    <ExpectedInfoContainer>
+                                                        <ExpectedTitle>
+                                                            {title ? title : 'Movie without a title'}
+                                                        </ExpectedTitle>
+                                                        <ExpectedInfoWrapper>
+                                                            <ExpextedRating className={ratingClassName}>
+                                                                {vote_average ? vote_average.toFixed(1) : 'N/A'}
+                                                            </ExpextedRating>
+                                                            <ExpextedYear>
+                                                                {release_date.slice(0, 4)}
+                                                            </ExpextedYear>
+                                                        </ExpectedInfoWrapper>
+                                                    </ExpectedInfoContainer>
+                                                </SlideFlexWrapper>
                                             </StyledSwiperSlide>
-                                        )
+                                        );
                                     }
                                 )}
                                 <NavigationButton className="swiper-button-next">
@@ -135,7 +150,7 @@ const ExpectedMoviesList = () => {
                 )}
             </Container>
         </>
-    )
+    );
 };
 
 export default ExpectedMoviesList;

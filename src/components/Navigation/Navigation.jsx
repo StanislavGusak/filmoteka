@@ -1,25 +1,19 @@
-import styles from './Navigation.module.css';
-import { NavLink } from 'react-router-dom';
+import {
+    NavWrapper,
+    NavigationWrapper,
+    NavigationLink,
+} from './Navigation.styled';
 
-const Navigation = () => {
+function Navigation() {
     return (
-        <div className={styles.nav__wrapper}>
-            <nav className={styles.navigation}>
-                <NavLink className={styles.navigation__link} to='/'>
-                    Home
-                </NavLink>
-                <NavLink className={styles.navigation__link} to='/movies'>
-                    Movies
-                </NavLink>
-                <NavLink className={styles.navigation__link} to='/library'>
-                    Library
-                </NavLink>
-                <NavLink className={styles.navigation__link} to='/registration'>
-                    Registration
-                </NavLink>
-            </nav>
-        </div>
+        <NavWrapper>
+            <NavigationWrapper>
+                <NavigationLink to="/">Home</NavigationLink>
+                <NavigationLink to="/movies">Movies</NavigationLink>
+                <NavigationLink to="/library">Library</NavigationLink>
+            </NavigationWrapper>
+        </NavWrapper>
     );
-};
+}
 
 export default Navigation;

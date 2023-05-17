@@ -99,6 +99,13 @@ const fetchWaitingForMovies = (currentPage =1) => {
     .then(responce => responce.data);
 };
 
+function fetchNewMoviesNotification(page, selectedLanguage = 'en') {
+    const today = new Date().toISOString().slice(0, 10);
+    const url = `${URL}/discover/movie?api_key=${KEY}&primary_release_date.gte=${today}&sort_by=primary_release_date.asc&page=${page}&language=${selectedLanguage}`;
+  
+    return axios.get(url).then(response => response.data.results);
+  };
+
 const apiTheMovieDB = {
     fetchMoviesByActors,
     fetchActorsInfoAndMovies,
@@ -114,6 +121,7 @@ const apiTheMovieDB = {
     fetchByYear,
     fetchExpectedMovies,
     fetchMoviesByRaiting,
-    fetchWaitingForMovies
+    fetchWaitingForMovies,
+    fetchNewMoviesNotification
 };
 export default apiTheMovieDB;

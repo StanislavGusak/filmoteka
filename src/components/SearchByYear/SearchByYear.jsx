@@ -1,11 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 import apiTheMovieDB from '../../services/kinoApi';
 import Container from '../Container/Container';
 import MoviesList from '../MoviesList/MoviesList';
 import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
-import styles from './SearchByYear.module.css';
+import { LanguageContext } from '../LanguageContext/LanguageContext';
+import {
+    CardsLoader,
+    SelectWrapper,
+    SelectedYear,
+    SelectLabel,
+    SearchText,
+    StyleSelect,
+} from './SearchByYear.styled';
 
 const SearchByYear = () => {
     const [selectedYear, setSelectedYear] = useState(0);
@@ -14,13 +22,18 @@ const SearchByYear = () => {
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [showButton, setShowButton] = useState(false);
+    const { selectedLanguage } = useContext(LanguageContext);
 
     useEffect(() => {
         if (selectedYear !== 0) {
             const fetchMovies = async () => {
                 setLoading(true);
                 try {
-                    const newMovies = await apiTheMovieDB.fetchByYear(page, selectedYear);
+                    const newMovies = await apiTheMovieDB.fetchByYear(
+                        page,
+                        selectedYear,
+                        selectedLanguage.iso_639_1
+                    );
                     if (newMovies.length === 0) {
                         setShowButton(false);
                         if (page === 1) {
@@ -41,7 +54,7 @@ const SearchByYear = () => {
             };
             fetchMovies();
         }
-    }, [page, selectedYear]);
+    }, [page, selectedYear, selectedLanguage]);
 
     if (error) {
         return <p>{error.message}</p>
@@ -60,45 +73,35 @@ const SearchByYear = () => {
     return (
         <>
             <Container>
-                <div className={styles.selected__wrapper}>
-                    <div className={styles.select__year}>
-                        <label className={styles.select__label} htmlFor="year-select">
-                            Select a year:
-                        </label>
-                        <div className={styles.select__wrapper}>
-                            <Select
-                                className={styles.select}
-                                classNamePrefix="react-select"
-                                name="year-select"
-                                id="year-select"
-                                value={{ value: selectedYear, label: selectedYear }}
-                                onChange={selectedOption =>
-                                    setSelectedYear(selectedOption.value)
-                                }
-                                options={yearOptions.map(year => ({
-                                    value: year,
-                                    label: year,
-                                }))}
-                                placeholder="Select a year"
-                                menuPlacement="auto"
-                            />
-                            <div className={styles.select__icon}></div>
-                        </div>
-                    </div>
-                    {movies.length > 0 ? (
-                        <MoviesList movies={movies} />
-                    ) : loading ? (
-                        <p className={styles.loading__movies__list}>Loading...</p>
-                    ) : (
-                        <p className={styles.search__text}>
-                            Please select a year to see movies.
-                        </p>
-                    )}
-                    {showButton && <ButtonLoadMore hendleIncrement={hendleIncrement} />}
-                </div>
+                <SelectWrapper>
+                    <SelectedYear>
+                        <SelectLabel htmlFor="year-select">Select a year:</SelectLabel>
+                        <StyleSelect
+                            classNamePrefix="react-select"
+                            name="year-select"
+                            id="year-select"
+                            value={{ value: selectedYear, label: selectedYear }}
+                            onChange={selectedOption => setSelectedYear(selectedOption.value)}
+                            options={yearOptions.map(year => ({
+                                value: year,
+                                label: year,
+                            }))}
+                            placeholder="Select a year"
+                            menuPlacement="auto"
+                        />
+                    </SelectedYear>
+                </SelectWrapper>
+                {movies.length > 0 ? (
+                    <MoviesList movies={movies} />
+                ) : loading ? (
+                    <CardsLoader size={50} />
+                ) : (
+                    <SearchText>Please select a year to see movies.</SearchText>
+                )}
+                {showButton && <ButtonLoadMore hendleIncrement={hendleIncrement} />}
             </Container>
         </>
-    )
+    );
 };
 
 export default SearchByYear;

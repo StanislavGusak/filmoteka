@@ -1,17 +1,30 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import ScrollToTop from 'react-scroll-to-top';
+import { FaReact } from 'react-icons/fa';
 
-export const Loader = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
-  color: rgb(80, 76, 74);
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
+export const LoaderWraper = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--background-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MainLoader = styled(FaReact)`
+  animation: rotate 5s infinite linear;
+  -webkit-animation: rotate 5s infinite linear;
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export const StyledScrollToTop = styled(ScrollToTop)`
@@ -22,10 +35,6 @@ export const StyledScrollToTop = styled(ScrollToTop)`
   justify-content: center;
   align-items: center;
   background: var(--background-movies-item);
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
   svg {
     fill: var(--color);
   }

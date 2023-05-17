@@ -1,30 +1,29 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styles from './GanreList.module.css';
+import css from './GanreList.module.css';
 
-const GanreList = ({genres}) => {
+function GenreList({ genres }) {
     const location = useLocation();
 
     return (
-        <ul className={styles.ganre__list}>
-            {genres.map(({id, name}) => (
-                <Link to={`genre/${id}`} state={{from: location}} key={id}>
-                    <li className={styles.ganre__list__item}>
-                        <p>{name}</p>
+        <ul className={css.ganreList}>
+            {genres.map(({ id, name }) => (
+                <Link to={`genre/${id}`} state={{ from: location }} key={id}>
+                    <li className={css.ganreListItem}>
+                        <p>{name || 'Unknown'}</p>
                     </li>
                 </Link>
             ))}
         </ul>
-    )
-};
+    );
+}
+export default GenreList;
 
-export default GanreList;
-
-GanreList.propTypes = {
+GenreList.propTypes = {
     genres: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired
+            name: PropTypes.string.isRequired,
         })
     ).isRequired,
 };

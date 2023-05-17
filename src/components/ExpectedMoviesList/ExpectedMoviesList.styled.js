@@ -1,11 +1,38 @@
 import styled, { css } from 'styled-components';
 import { SwiperSlide } from 'swiper/react';
 import { AiFillFastForward, AiFillFastBackward } from 'react-icons/ai';
+import { FaReact } from 'react-icons/fa';
+
+export const CardsLoader = styled(FaReact)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  fill: var(--color);
+  animation: rotate 5s infinite linear;
+  -webkit-animation: rotate 5s infinite linear;
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 export const ExpectedWrapper = styled.div`
   overflow: hidden;
-  margin-top: 150px;
+  margin-top: 190px;
   padding: 5px;
+  height: 100%;
+  @media screen and (max-width: 705px) {
+    margin-top: 230px;
+  }
+  @media screen and (max-width: 380px) {
+    margin-top: 250px;
+  }
 `;
 
 export const NavigationButton = styled.div`
@@ -38,19 +65,8 @@ export const NavigationButton = styled.div`
   }
 `;
 
-export const ExpectedInfoWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const ExpectedInfoContainer = styled.div`
-  padding: 5px;
-`;
-
 export const StyledSwiperSlide = styled(SwiperSlide)`
-  width: 100%;
-  height: 100%;
-  background: #232526;
+  height: 390px;
   background: var(--background-movies-item);
   padding: 5px;
   font-size: 14px;
@@ -60,12 +76,13 @@ export const StyledSwiperSlide = styled(SwiperSlide)`
   box-sizing: border-box;
 `;
 
-export const StyledAiFillFastForward = styled(AiFillFastForward)`
-  color: var(--color);
+export const SlideFlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 390px;
 `;
-export const StyledAiFillFastBackward = styled(AiFillFastBackward)`
-  color: var(--color);
-`;
+
 export const ImgExpectedWrapper = styled.div`
   overflow: hidden;
 `;
@@ -80,16 +97,35 @@ export const ExpectedImg = styled.img`
   }
 `;
 
+export const ExpectedInfoContainer = styled.div`
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+`;
+
 export const ExpectedTitle = styled.p`
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 180px;
+  width: 160px;
   white-space: nowrap;
   margin-bottom: 5px;
   font-weight: bold;
 `;
 
-/* Задаем разные цвета для рейтингов */
+export const ExpectedInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StyledAiFillFastForward = styled(AiFillFastForward)`
+  color: var(--color);
+`;
+export const StyledAiFillFastBackward = styled(AiFillFastBackward)`
+  color: var(--color);
+`;
+
 export const red = css`
   background: #f85032;
   background: -webkit-linear-gradient(to right, #e73827, #f85032);
@@ -116,19 +152,16 @@ export const ExpextedRating = styled.p`
   align-items: center;
   border-radius: 50%;
   width: 10px;
-  heigth: 10px;
+  height: 10px;
   padding: 5px;
   font-weight: bold;
   font-size: 8px;
-  // добавляем стили для класса rating-red
   &.rating-red {
     ${red}
   }
-  // добавляем стили для класса rating-yellow
   &.rating-yellow {
     ${yellow}
   }
-  // добавляем стили для класса rating-green
   &.rating-green {
     ${green}
   }

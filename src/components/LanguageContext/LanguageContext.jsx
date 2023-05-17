@@ -1,15 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 const LanguageContext = createContext({
     selectedLanguage: 'en',
-    setSelectedLanguage: () => {},
+    setSelectedLanguage: () => { },
 });
 
-const LanguageProvider = ({children}) => {
+const LanguageProvider = ({ children }) => {
     const [selectedLanguage, setSelectedLanguage] = useState('en');
 
     return (
-        <LanguageContext.Provider value={{selectedLanguage, setSelectedLanguage}}>
+        <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>
             {children}
         </LanguageContext.Provider>
     );

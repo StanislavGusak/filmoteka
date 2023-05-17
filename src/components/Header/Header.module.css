@@ -10,12 +10,28 @@
     box-shadow: var(--box-shadow-header);
 }
 
-.navigation__wrapper {
+.navigationWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.WrapperLangAndTheme {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
 }
 
 .logo {
@@ -32,7 +48,7 @@
     color: var(--color);
 }
 
-.logo__react {
+.reactLogo {
     color: var(--color);
     margin-right: 5px;
     animation: rotate 5s infinite linear;

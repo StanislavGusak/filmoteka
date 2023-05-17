@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
@@ -6,6 +6,7 @@ import { animateScroll as scroll } from 'react-scroll';
 import Container from "../../components/Container/Container";
 import BackDown from "../../components/BackDown/BackDown";
 import apiTheMovieDB from "../../services/kinoApi";
+import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
 import css from './ActorsPage.module.css';
 import {
     CardsLoader,
@@ -26,6 +27,7 @@ const ActorsPage = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredActors, setFilteredActors] = useState([]);
+    const { selectedLanguage } = useContext(LanguageContext);
 
     const location = useLocation();
     const backLink = location.state?.from ?? '/';
@@ -35,7 +37,8 @@ const ActorsPage = () => {
             try {
                 const { results, total_pages } = await apiTheMovieDB.fetchActors(
                     page,
-                    searchQuery
+                    searchQuery,
+                    selectedLanguage.iso_639_1
                 );
                 if (results.length === 0) {
                     toast.error("sorry, that's all the actors we could find");
@@ -49,10 +52,10 @@ const ActorsPage = () => {
             }
         };
         fetchActors(currentPage, searchQuery)
-    }, [currentPage, searchQuery]);
+    }, [currentPage, searchQuery, selectedLanguage]);
 
     useEffect(() => {
-        const filtered = actors.filter(actor => 
+        const filtered = actors.filter(actor =>
             actor.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredActors(filtered);
@@ -61,10 +64,10 @@ const ActorsPage = () => {
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected + 1);
         scroll.scrollToTop({
-          duration: 1000,
-          smooth: 'easeInOutQuad',
+            duration: 1000,
+            smooth: 'easeInOutQuad',
         });
-      };
+    };
 
     const handleSearchChange = event => {
         setSearchQuery(event.target.value);
@@ -105,7 +108,7 @@ const ActorsPage = () => {
                                             src={
                                                 profile_path
                                                     ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                                                    : 'https://via.placeholder.com/200x300'
+                                                    : 'https://dummyimage.com/200x300/fff/aaa'
                                             }
                                             alt={name}
                                             width={200}
