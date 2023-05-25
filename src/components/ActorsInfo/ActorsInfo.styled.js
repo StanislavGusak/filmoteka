@@ -23,7 +23,7 @@ export const CardsLoader = styled(FaReact)`
 export const InfoActorContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   padding: 20px;
   margin-bottom: 20px;
 `;

@@ -1,5 +1,5 @@
 
-@import-normalize;
+/* @import-normalize; */
 /* bring in normalize.css styles */
 
 body {
@@ -18,9 +18,11 @@ body[data-theme='dark'] {
   --background-movies-item: linear-gradient(to right, #efefbb, #d4d3dd);
   --color: rgb(41, 28, 28);
   --border-color: gray;
-  --transition: 0.4s;
+  --transition: 400ms ease-in-out;
   --box-shadow-header: 0px 2px 8px rgba(0, 0, 0, 0.2);
   --hover-color-text: rgb(42, 155, 155);
+  --hover-btn: #e4e6c6;
+
 }
 
 body[data-theme='light'] {
@@ -29,14 +31,34 @@ body[data-theme='light'] {
   --background-movies-item: linear-gradient(to right, #414345, #232526);
   --color: aqua;
   --border-color: gold;
-  --transition: 0.4s;
+  --transition: 400ms ease-in-out;
   --box-shadow-header: 0px 2px 8px rgba(10, 216, 244, 0.4);
   --hover-color-text: rgb(115, 87, 87);
+  --hover-btn: #414345;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  scrollbar-color: var(--color);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: grey;
 }
 
 h1,

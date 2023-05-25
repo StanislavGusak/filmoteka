@@ -1,0 +1,11 @@
+.backdrop {
+    z-index: 3;
+    background-color: black;
+    opacity: .4;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transition: all 2s ease-in;
+}

@@ -13,6 +13,19 @@ export const NavigationWrapper = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 30px;
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    transition: left 1s;
+    width: 100%;
+    height: 100vh;
+    background: var(--background-header);
+  }
 `;
 
 export const NavigationLink = styled(NavLink)`
@@ -20,9 +33,25 @@ export const NavigationLink = styled(NavLink)`
   text-transform: uppercase;
   transition: color var(--transition);
   position: relative;
-  &:hover {
-    color: var(--hover-color-text);
-  }
+
+  &::after {
+    display: block;
+    content: "";
+    width: 80%;
+    height: 3px;
+    position: absolute;
+    left: 50%;
+    transition: all .5s ease-in-out;
+    transform: translate(-50%) scale3d(0,1,1);
+    bottom: -10px;
+    background: var(--color);
+    border-radius: 5px;
+}
+
+&:hover::after {
+  transform: translate(-50%) scale3d(1,1,1);
+}
+
   &.active {
     color: var(--color);
     cursor: default;

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import css from './GanreList.module.css';
+import css from './GenreList.module.css';
 
 function GenreList({ genres }) {
     const location = useLocation();

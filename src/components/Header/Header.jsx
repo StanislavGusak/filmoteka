@@ -16,27 +16,19 @@ function Header() {
 
     return (
         <header className={css.header}>
-            <Container>
-                <div className={css.navigationWrapper}>
-                    <div className={css.WrapperLangAndTheme}>
-                        <ThemeSwitcher />
-                        <LanguageSelection />
-                    </div>
-                    <div className={css.navContainer}>
-                        <Navigation />
-                        {isLoggedIn ? <UserBar /> : <AuthNav />}
-                    </div>
-                    {isLoggedIn && <BellNotification />}
-                    <div className={css.logo}>
-                        <Link to="/">
-                            <FaReact className={css.reactLogo} />
-                            <span>Filmoteka on React</span>
-                        </Link>
-                    </div>
+            <div className={css.navigationWrapper}>
+                <div className={css.WrapperLangAndTheme}>
+                    <ThemeSwitcher />
+                    <LanguageSelection />
                 </div>
-            </Container>
+                <div className={css.navContainer}>
+                    <Navigation />
+                    {isLoggedIn ? <UserBar /> : <AuthNav />}
+                </div>
+                {isLoggedIn && <BellNotification />}
+            </div>
         </header>
     );
-}
+};
 
 export default Header;

@@ -19,7 +19,8 @@ export const FavoritesList = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+  margin-top: 50px;
   overflow: hidden;
 `;
 
@@ -41,9 +42,9 @@ export const ImgWrapper = styled.div`
 
 export const MoviesImg = styled.img`
   max-width: 100%;
+  // height: 450px;
   object-fit: cover;
   transition: transform 0.4s;
-
   &:hover {
     transform: scale(1.1);
   }
@@ -91,15 +92,15 @@ export const ExpextedRating = styled.p`
   padding: 5px;
   font-weight: bold;
   font-size: 8px;
-
+  // добавляем стили для класса rating-red
   &.rating-red {
     ${red}
   }
-
+  // добавляем стили для класса rating-yellow
   &.rating-yellow {
     ${yellow}
   }
-
+  // добавляем стили для класса rating-green
   &.rating-green {
     ${green}
   }

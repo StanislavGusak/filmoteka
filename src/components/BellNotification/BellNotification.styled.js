@@ -23,7 +23,7 @@ export const CardsLoader = styled(FaReact)`
 export const BackDrop = styled.div`
   position: fixed;
   width: 100vw;
-  top: 0;
+  top: 17px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -45,9 +45,8 @@ export const BellListWrapper = styled.div`
   position: absolute;
   top: 110px;
   z-index: 20;
-  max-height: 500px;
+  max-height: 470px;
   box-sizing: border-box;
-  border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
   @media screen and (max-width: 706px) {

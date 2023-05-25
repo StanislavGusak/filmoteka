@@ -16,16 +16,8 @@ export const MoviesImg = styled.img`
   max-width: 100%;
   object-fit: cover;
   transition: transform 0.4s;
-  -webkit-transition: transform 0.4s;
-  -moz-transition: transform 0.4s;
-  -ms-transition: transform 0.4s;
-  -o-transition: transform 0.4s;
   &:hover {
     transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
   }
 `;
 
@@ -68,7 +60,6 @@ export const MoviesYear = styled.p`
   margin-left: auto;
 `;
 
-/* Задаем разные цвета для рейтингов */
 export const red = css`
   background: #f85032;
   background: -webkit-linear-gradient(to right, #e73827, #f85032);

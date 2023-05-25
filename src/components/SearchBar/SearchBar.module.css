@@ -12,14 +12,12 @@
     height: 50px;
     margin-right: 10px;
     background-color: transparent;
-    border: 1px solid gray;
+    border: 1px solid grey;
     outline: none;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
     padding: 10px;
+    color: var(--color);
+    text-transform: uppercase;
 }
 
 .input__search:focus {
@@ -34,18 +32,18 @@
 .search__btn {
     width: 100px;
     height: 50px;
+    padding: 10px;
     background: var(--background-header);
-    border: var(--border-color);
+    border: 1px solid gray;
     color: var(--color);
     border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .search__btn:hover,
 .search__btn:focus {
     background: var(--background-body);
+    border: 1px solid var(--border-color);
+    color: var(--border-color);
 }

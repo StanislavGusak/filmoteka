@@ -14,4 +14,9 @@
     color: var(--color);
     font-size: 16px;
     text-decoration: underline;
+    transition: all 200ms ease-in-out;
+}
+
+.moviebar__list__item a:hover {
+    color: var(--border-color);
 }

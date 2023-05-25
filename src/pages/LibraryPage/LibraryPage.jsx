@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import Container from "../../components/Container/Container";
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Container from '../../components/Container/Container';
+import BackDown from '../../components/BackDown/BackDown';
 import {
     LibrarryTitle,
     FavoritesList,
@@ -14,20 +15,24 @@ import {
 } from './LibraryPage.styled';
 
 const LibraryPage = () => {
-    const [favouriteList, setFavouriteList] = useState([]);
+    const [favoritesList, setFavoritesList] = useState([]);
     const location = useLocation();
+    const backLink = location.state?.from ?? '/';
 
     useEffect(() => {
-        const favourite = JSON.parse(localStorage.getItem('favourites'));
-        setFavouriteList(favourite || []);
+        const favorites = JSON.parse(localStorage.getItem('favorites'));
+        setFavoritesList(favorites || []);
     }, []);
 
     return (
         <>
             <Container>
                 <LibrarryTitle>Favorites</LibrarryTitle>
+                <Link to={backLink}>
+                    <BackDown />
+                </Link>
                 <FavoritesList>
-                    {favouriteList.map(
+                    {favoritesList.map(
                         ({ id, poster_path, title, vote_average, release_date }) => {
                             const getRatingColor = () => {
                                 if (vote_average <= 4) {
@@ -48,7 +53,7 @@ const LibraryPage = () => {
                                                 src={
                                                     poster_path
                                                         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                                                        : 'https://via.placeholder.com/300x400'
+                                                        : 'https://via.placeholder.com/300x420'
                                                 }
                                                 alt={title}
                                                 width={300}

@@ -18,7 +18,7 @@ import {
 const Footer = () => {
     return (
         <StyleFooter>
-            <Container>
+            {/* <Container> */}
                 <FooterList>
                     <FooterItem>
                         <FooterLink
@@ -71,7 +71,7 @@ const Footer = () => {
                         </FooterLink>
                     </FooterItem>
                 </FooterList>
-            </Container>
+            {/* </Container> */}
         </StyleFooter>
     );
 };

@@ -114,7 +114,7 @@ const ExpectedMoviesList = () => {
                                                                 src={
                                                                     poster_path
                                                                         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                                                                        : 'https://via.placeholder.com/300x400'
+                                                                        : 'https://via.placeholder.com/300x420'
                                                                 }
                                                                 alt={title}
                                                             />
@@ -135,7 +135,7 @@ const ExpectedMoviesList = () => {
                                                     </ExpectedInfoContainer>
                                                 </SlideFlexWrapper>
                                             </StyledSwiperSlide>
-                                        );
+                                        )
                                     }
                                 )}
                                 <NavigationButton className="swiper-button-next">

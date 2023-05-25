@@ -65,11 +65,11 @@ const fetchMoviesByActors = (id, page = 1) => {
     .then(responce => responce.data.cast);
 };
 
-const fetchActorsInfoAndMovies = (id) => {
+function fetchActorInfoAndMovies(id, selectedLanguage = 'en') {
     return axios
-    .get(`${URL}person/${id}?api_key=${KEY}`)
-    .then(responce => responce.data);
-};
+      .get(`${URL}person/${id}?api_key=${KEY}&language=${selectedLanguage}`)
+      .then(response => response.data);
+  }
 
 const fetchByYear = (page = 1, selectedYear) => {
     return axios 
@@ -108,7 +108,7 @@ function fetchNewMoviesNotification(page, selectedLanguage = 'en') {
 
 const apiTheMovieDB = {
     fetchMoviesByActors,
-    fetchActorsInfoAndMovies,
+    fetchActorInfoAndMovies,
     fetchTrending,
     fetchSearchMovie,
     fetchMovieDetails,

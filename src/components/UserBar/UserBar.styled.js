@@ -19,21 +19,17 @@ export const WelcomeMessage = styled.p`
   }
 `;
 
-export const Email = styled.p`
-  font-size: 14px;
-  opacity: 0.6;
-  color: var(--border-color);
-`;
-
 export const LogoutButton = styled.button`
   background-color: transparent;
-  border: none;
+  border: 1px solid var(--color);
+  border-radius: 4px;
   color: var(--color);
-  font-size: 18px;
   cursor: pointer;
-  transition: color var(--transition);
+  font-size: 14px;
+  padding: 5px 20px;
+  transition: var(--transition);
   &:hover {
-    text-decoration: underline;
-    color: var(--border-color);
+    background-color: var(--color);
+    color: var(--hover-btn);
   }
 `;

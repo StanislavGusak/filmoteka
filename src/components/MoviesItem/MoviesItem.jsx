@@ -48,7 +48,7 @@ function MoviesItem({ poster_path, title, vote_average, release_date }) {
                         src={
                             poster_path
                                 ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                                : 'https://dummyimage.com/300x450/fff/aaa'
+                                : 'https://dummyimage.com/300x420/fff/aaa'
                         }
                         alt={title}
                         width={300}

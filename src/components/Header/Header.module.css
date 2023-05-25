@@ -34,33 +34,3 @@
     gap: 10px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color);
-    font-size: 1.5rem;
-    margin-top: 10px;
-    position: relative;
-}
-
-.logo span {
-    color: var(--color);
-}
-
-.reactLogo {
-    color: var(--color);
-    margin-right: 5px;
-    animation: rotate 5s infinite linear;
-    -webkit-animation: rotate 5s infinite linear;
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}

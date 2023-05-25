@@ -21,12 +21,11 @@ export const PosterMovie = styled.img`
   z-index: -1;
   transform: translate(-50%, 0);
   opacity: 0.1;
-  /* border: 10px solid var(--color); */
   border-radius: 10px;
 `;
 
 export const BtnBackDetailsWrapper = styled.div`
-  margin-top: 150px;
+  margin-top: 200px;
 `;
 
 export const BtnBack = styled.button`

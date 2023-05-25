@@ -75,11 +75,9 @@ export const StyleDebounceInput = styled(DebounceInput)`
   height: 50px;
   background: var(--background-header);
   color: var(--color);
+  padding-left: 10px;
   
   &:focus {
     outline: none;
-  }
-  &::placeholder {
-    padding-left: 5px;
   }
 `;

@@ -1,0 +1,15 @@
+.mobile__btn {
+    display: none;
+}
+
+@media screen and (max-width: 550px) {
+    .mobile__btn {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        color: var(--color);
+        cursor: pointer;
+        z-index: 10;
+    }
+}

@@ -31,8 +31,8 @@ const SearchBar = ({ onSubmit }) => {
                 placeholder="Enter the movie name"
                 onChange={handleQueryChange}
             />
-            <button type="submit" className={styles.serch__btn}>
-                Search...
+            <button type="submit" className={styles.search__btn}>
+                Search
             </button>
         </form>
     );
