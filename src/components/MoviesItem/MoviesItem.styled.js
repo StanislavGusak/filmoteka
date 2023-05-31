@@ -90,15 +90,12 @@ export const RatingBlock = styled.div`
   padding: 5px;
   font-weight: bold;
   margin-left: 10px;
-  // добавляем стили для класса rating-red
   &.rating-red {
     ${red}
   }
-  // добавляем стили для класса rating-yellow
   &.rating-yellow {
     ${yellow}
   }
-  // добавляем стили для класса rating-green
   &.rating-green {
     ${green}
   }

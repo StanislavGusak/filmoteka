@@ -50,12 +50,12 @@ const ExpectedMoviePage =() => {
     return (
         <>
             <Container>
+                <ExpectedTitle>Expected Movies</ExpectedTitle>
                 <BtnBackExpectedWrapper>
                     <Link to={backLink}>
                         <BackDown />
                     </Link>
                 </BtnBackExpectedWrapper>
-                <ExpectedTitle>Expected Movies</ExpectedTitle>
                 {loading ? (
                     <CardsLoader size={50} />
                 ) : (

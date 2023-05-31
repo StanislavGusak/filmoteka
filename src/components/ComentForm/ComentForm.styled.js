@@ -5,6 +5,7 @@ export const StyleForm = styled.form`
   flex-direction: column;
   max-width: 320px;
   gap: 10px;
+  margin-top: 30px;
   margin-bottom: 30px;
 `;
 

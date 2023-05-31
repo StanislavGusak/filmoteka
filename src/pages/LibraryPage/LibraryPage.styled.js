@@ -1,17 +1,13 @@
 import styled, { css } from 'styled-components';
 
 export const LibrarryTitle = styled.h1`
-  margin-top: 190px;
-  margin-bottom: 50px;
+  margin-top: 150px;
+  margin-bottom: 30px;
+  font-size: 24px;
   color: var(--color);
   display: flex;
   justify-content: center;
-  @media screen and (max-width: 705px) {
-    margin-top: 230px;
-  }
-  @media screen and (max-width: 380px) {
-    margin-top: 250px;
-  }
+  text-transform: uppercase;
 `;
 
 export const FavoritesList = styled.ul`
@@ -42,7 +38,6 @@ export const ImgWrapper = styled.div`
 
 export const MoviesImg = styled.img`
   max-width: 100%;
-  // height: 450px;
   object-fit: cover;
   transition: transform 0.4s;
   &:hover {
@@ -92,15 +87,13 @@ export const ExpextedRating = styled.p`
   padding: 5px;
   font-weight: bold;
   font-size: 8px;
-  // добавляем стили для класса rating-red
+
   &.rating-red {
     ${red}
   }
-  // добавляем стили для класса rating-yellow
   &.rating-yellow {
     ${yellow}
   }
-  // добавляем стили для класса rating-green
   &.rating-green {
     ${green}
   }

@@ -1,0 +1,22 @@
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto;
+    width: 150px;
+    height: 100vh;
+    padding: 15px;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    background-image: var(--background-header);
+    transition: top 1s;
+}
+
+.active {
+    top: 0;
+}

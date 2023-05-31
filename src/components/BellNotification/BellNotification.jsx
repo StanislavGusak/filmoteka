@@ -84,13 +84,13 @@ const BellNotification = () => {
                 {viewed ? (
                     <TbBellMinusFilled
                         onClick={handleClick}
-                        size={30}
+                        size={20}
                         color={viewed ? 'gray' : 'green'}
                     />
                 ) : (
                     <TbBellPlusFilled
                         onClick={handleClick}
-                        size={30}
+                        size={20}
                         color={viewed ? 'gray' : 'green'}
                     />
                 )}

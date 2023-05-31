@@ -4,7 +4,7 @@ export const BtnSwitcher = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: var(--color);
+    color: var(--border-color);
 `;
 
 export const SwitcherWrapper = styled.div`
@@ -13,7 +13,3 @@ export const SwitcherWrapper = styled.div`
     align-items: center;
     justify-content: center;
 `;
-
-export const SwitcherText = styled.p`
-    color: var(--color);
-`;  

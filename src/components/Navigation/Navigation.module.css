@@ -1,3 +1,31 @@
+.menu {
+    max-width: 768px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+@media screen and (max-width: 550px) {
+    .menu {
+        flex-direction: column;
+        position: fixed;
+        left: -100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100vh;
+        background: var(--background-header);
+        transition: left 1s;
+    }
+}
+
+.active {
+    left: 0;
+}
+
 .mobile__btn {
     display: none;
 }

@@ -6,7 +6,7 @@ import apiTheMovieDB from "../../services/kinoApi";
 import Container from "../../components/Container/Container";
 import MoviesList from "../../components/MoviesList/MoviesList";
 import BackDown from "../../components/BackDown/BackDown";
-import { TitleTopRating, CardsLoader, BtnWrapperTop } from './TopRatedPage.styled';
+import { TitleTopRating, CardsLoader } from './TopRatedPage.styled';
 import css from '../ActorsPage/ActorsPage.module.css';
 import { LanguageContext } from '../../components/LanguageContext/LanguageContext';
 
@@ -22,41 +22,39 @@ const TopRatedPage = () => {
 
     useEffect(() => {
         apiTheMovieDB
-        .fetchMoviesByRaiting(currentPage, selectedLanguage.iso_639_1)
-        .then(({ results, total_pages }) => {
-            setMovies(results);
-            setTotalPage(Math.min(total_pages, 500));
+            .fetchMoviesByRaiting(currentPage, selectedLanguage.iso_639_1)
+            .then(({ results, total_pages }) => {
+                setMovies(results);
+                setTotalPage(Math.min(total_pages, 500));
 
-            if(results.length === 0) {
-                toast.error("sorry, that's all the actors we could find");
-            }
-        })
-        .catch(error => {
-            setError(error);
-        })
-        .finally(() => setLoading(false));
+                if (results.length === 0) {
+                    toast.error("sorry, that's all the actors we could find");
+                }
+            })
+            .catch(error => {
+                setError(error);
+            })
+            .finally(() => setLoading(false));
     }, [currentPage, selectedLanguage]);
 
-    if(error) {
+    if (error) {
         return <p>{error.message}</p>
     }
 
     const handlePageChange = ({ selected }) => {
-        if(selected + 1 > totalPage) {
+        if (selected + 1 > totalPage) {
             return;
         }
         setCurrentPage(selected + 1);
     }
 
-    return ( 
+    return (
         <>
             <Container>
-                <BtnWrapperTop>
+                <TitleTopRating>Top rating movies</TitleTopRating>
                     <Link to={backLink}>
                         <BackDown />
                     </Link>
-                </BtnWrapperTop>
-                <TitleTopRating>Top rating movies</TitleTopRating>
                 {loading ? (
                     <CardsLoader size={50} />
                 ) : (

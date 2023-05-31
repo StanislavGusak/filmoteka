@@ -10,13 +10,16 @@ export const DetailsWrapper = styled.div`
 export const ColumnInfo = styled.div`
   max-width: 50%;
   padding: 10px;
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 export const PosterMovie = styled.img`
   position: absolute;
   width: 100%;
   height: auto;
-  top: -1%;
+  top: 0;
   right: -50%;
   z-index: -1;
   transform: translate(-50%, 0);
@@ -25,21 +28,8 @@ export const PosterMovie = styled.img`
 `;
 
 export const BtnBackDetailsWrapper = styled.div`
-  margin-top: 200px;
-`;
-
-export const BtnBack = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  color: var(--color);
-  margin-top: 10px;
-  &:hover {
-    background-color: rgb(243, 165, 21);
-  }
+  margin-top: 150px;
+  margin-bottom: 30px;
 `;
 
 export const IconBack = styled.img`
@@ -47,13 +37,13 @@ export const IconBack = styled.img`
 `;
 
 export const InfoTitle = styled.h1`
-  max-width: 700px;
-  font-size: 70px;
+  max-width: 90%;
+  font-size: 56px;
   color: var(--color);
   text-shadow: 0 0 1px black;
   margin-bottom: 10px;
   @media screen and (max-width: 768px) {
-    font-size: 27px;
+    font-size: 38px;
   }
 `;
 
@@ -64,11 +54,11 @@ export const ScoreDetails = styled.p`
 `;
 
 export const OverviewTitle = styled.h2`
-  font-size: 40px;
+  font-size: 36px;
   color: var(--color);
   margin-bottom: 10px;
   @media screen and (max-width: 768px) {
-    font-size: 27px;
+    font-size: 22px;
   }
 `;
 
@@ -117,7 +107,6 @@ export const ColumnImg = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 10;
     transform: translate(-50%, -50%);
     width: 150px;
     height: 150px;
@@ -167,7 +156,6 @@ export const Review = styled.div`
 
 export const VideoBackdrop = styled.div`
   position: fixed;
-  z-index: 30;
   top: 0;
   left: 0;
   width: 100vw;
@@ -218,6 +206,12 @@ export const AddMoviesBtn = styled.button`
   background: var(--background-header);
   border: 1px solid var(--border-color);
   border-radius: 5px;
+  transition: all 400ms;
+  &:hover {
+    background: var(--color);
+    color: var(--hover-btn);
+    border: 1px solid var(--color);
+  }
 `;
 
 export const AuthBtnText = styled.p`

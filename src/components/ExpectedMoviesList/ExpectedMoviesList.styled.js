@@ -24,15 +24,9 @@ export const CardsLoader = styled(FaReact)`
 
 export const ExpectedWrapper = styled.div`
   overflow: hidden;
-  margin-top: 190px;
+  margin-top: 150px;
   padding: 5px;
   height: 100%;
-  @media screen and (max-width: 705px) {
-    margin-top: 230px;
-  }
-  @media screen and (max-width: 380px) {
-    margin-top: 250px;
-  }
 `;
 
 export const NavigationButton = styled.div`
@@ -66,7 +60,7 @@ export const NavigationButton = styled.div`
 `;
 
 export const StyledSwiperSlide = styled(SwiperSlide)`
-  height: 390px;
+  height: 350px;
   background: var(--background-movies-item);
   padding: 5px;
   font-size: 14px;
@@ -80,7 +74,7 @@ export const SlideFlexWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 390px;
+  height: 350px;
 `;
 
 export const ImgExpectedWrapper = styled.div`

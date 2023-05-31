@@ -1,10 +1,11 @@
 import { useEffect, useState, useCallback, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
 import apiTheMovieDB from "../../services/kinoApi";
 import MoviesList from "../../components/MoviesList/MoviesList";
 import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
+import BackDown from "../../components/BackDown/BackDown";
 import { GenreListMoviesContainer, GenreTitle } from './GenrePage.styled';
 
 const GenrePage = () => {
@@ -13,6 +14,8 @@ const GenrePage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
     const { selectedLanguage } = useContext(LanguageContext);
+    const location = useLocation();
+    const backLink = location.state?.from ?? '/';
 
     const fetchMovies = useCallback(async () => {
         try {
@@ -49,6 +52,9 @@ const GenrePage = () => {
     return (
         <GenreListMoviesContainer>
             <GenreTitle>Movies by genre</GenreTitle>
+            <Link to={backLink}>
+                <BackDown />
+            </Link>
             <InfiniteScroll
                 dataLength={movies.length}
                 next={() => setCurrentPage(currentPage + 1)}

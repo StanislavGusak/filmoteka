@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaReact } from 'react-icons/fa';
-import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 import AuthNav from '../AuthNav/AuthNav';
@@ -20,12 +19,12 @@ function Header() {
                 <div className={css.WrapperLangAndTheme}>
                     <ThemeSwitcher />
                     <LanguageSelection />
+                    {isLoggedIn && <BellNotification />}
                 </div>
                 <div className={css.navContainer}>
                     <Navigation />
                     {isLoggedIn ? <UserBar /> : <AuthNav />}
                 </div>
-                {isLoggedIn && <BellNotification />}
             </div>
         </header>
     );

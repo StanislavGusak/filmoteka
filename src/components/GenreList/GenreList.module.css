@@ -22,10 +22,7 @@
     text-transform: uppercase;
 }
 
-.ganreListItem p {
-    transition: var(--transition);
-}
-
-.ganreListItem:hover p {
+.ganreListItem:hover {
     transform: scale(1.1);
+    transition: var(--transition);
 }

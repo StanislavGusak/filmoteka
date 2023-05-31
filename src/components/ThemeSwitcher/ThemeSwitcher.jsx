@@ -20,7 +20,7 @@ const ThemeSwitcher = () => {
     return (
         <SwitcherWrapper>
             <BtnSwitcher onClick={handleThemeToggle}>
-                {isDarkMode ? <FaMoon size={16} /> : <FaSun size={16} />}
+                {isDarkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
             </BtnSwitcher>
         </SwitcherWrapper>
     );

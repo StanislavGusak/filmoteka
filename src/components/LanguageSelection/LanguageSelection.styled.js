@@ -26,25 +26,6 @@ export const StyleFiGlobe = styled(FiGlobe)`
   cursor: pointer;
 `;
 
-export const LanguageList = styled.ul`
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  overflow-y: scroll;
-  max-width: 150px;
-  max-height: 400px;
-  z-index: 30;
-  background-image: var(--background-header);
-  border-radius: 10px;
-  padding: 15px;
-`;
-
 export const LanguageTitle = styled.p`
   color: var(--color);
   text-transform: uppercase;

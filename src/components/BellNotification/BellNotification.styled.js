@@ -27,7 +27,7 @@ export const BackDrop = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 20;
+  z-index: 10;
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -35,6 +35,8 @@ export const BackDrop = styled.div`
 
 export const BellWrapper = styled.div`
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 `;
 
 export const BellListWrapper = styled.div`
@@ -43,18 +45,11 @@ export const BellListWrapper = styled.div`
   max-width: 700px;
   padding: 20px;
   position: absolute;
-  top: 110px;
-  z-index: 20;
+  top: 81px;
+  z-index: 10;
   max-height: 470px;
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (max-width: 706px) {
-    top: 150px;
-  }
-  @media screen and (max-width: 458px) {
-    top: 170px;
-  }
+  margin: auto;
 `;
 
 export const BellList = styled.ul`

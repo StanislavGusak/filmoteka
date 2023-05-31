@@ -7,27 +7,6 @@ export const NavWrapper = styled.div`
   align-items: center;
 `;
 
-export const NavigationWrapper = styled.nav`
-  max-width: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  @media screen and (max-width: 550px) {
-    flex-direction: column;
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    transition: left 1s;
-    width: 100%;
-    height: 100vh;
-    background: var(--background-header);
-  }
-`;
-
 export const NavigationLink = styled(NavLink)`
   color: var(--color);
   text-transform: uppercase;

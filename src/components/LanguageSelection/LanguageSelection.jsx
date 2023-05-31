@@ -3,11 +3,11 @@ import { useState, useEffect, useContext } from 'react';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
 import {
     StyleFiGlobe,
-    LanguageList,
     LanguageTitle,
     LanguageItem,
     LanguageName,
 } from './LanguageSelection.styled';
+import styles from './LanguageSelection.module.css';
 
 const URL = `https://api.themoviedb.org/3/`;
 const KEY = '4d8a40deb29f91051ef07c892ab10f05';
@@ -73,21 +73,19 @@ const LanguageSelection = () => {
 
     return (
         <>
-            <StyleFiGlobe onClick={handleToggleList} />
-            {isListOpen && (
-                <LanguageList>
-                    <LanguageTitle>select a language</LanguageTitle>
-                    {languages.map(language => (
-                        <LanguageItem
-                            key={language.iso_639_1}
-                            onClick={() => handleLanguageItemClick(language)}
-                            active={language.iso_639_1 === selectedLanguage.iso_639_1}
-                        >
-                            <LanguageName>{language.english_name}</LanguageName>
-                        </LanguageItem>
-                    ))}
-                </LanguageList>
-            )}
+            <StyleFiGlobe onClick={handleToggleList} size={20} />
+            <ul className={isListOpen ? [styles.list, styles.active].join(' ') : [styles.list]}>
+                <LanguageTitle>language</LanguageTitle>
+                {languages.map(language => (
+                    <LanguageItem
+                        key={language.iso_639_1}
+                        onClick={() => handleLanguageItemClick(language)}
+                        active={language.iso_639_1 === selectedLanguage.iso_639_1}
+                    >
+                        <LanguageName>{language.english_name}</LanguageName>
+                    </LanguageItem>
+                ))}
+            </ul>
         </>
     );
 };

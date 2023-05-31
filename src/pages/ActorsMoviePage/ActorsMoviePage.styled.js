@@ -1,14 +1,8 @@
 import styled from 'styled-components';
 
 export const BtnBackWrapper = styled.div`
-  margin-top: 190px;
+  margin-top: 150px;
   margin-bottom: 30px;
-  @media screen and (max-width: 705px) {
-    margin-top: 230px;
-  }
-  @media screen and (max-width: 380px) {
-    margin-top: 250px;
-  }
 `;
 
 export const ActorsMoviesTitle = styled.h2`

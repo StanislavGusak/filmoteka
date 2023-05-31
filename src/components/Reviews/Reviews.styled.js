@@ -34,8 +34,12 @@ export const ReviewAndCommentWrapper = styled.div`
 `;
 
 export const ReviewList = styled.ul`
-  width: 50%;
-  margin-bottom: 90px;
+background-image: var(--background-header);
+padding: 15px;
+border-radius: 10px;
+width: 50%;
+display: flex;
+flex-direction: column;
 `;
 
 export const ReviewListItem = styled.li``;
@@ -56,6 +60,7 @@ export const Author = styled.p`
 `;
 
 export const Content = styled.p`
+  overflow: hidden;
   font-size: 20px;
   color: var(--color);
   margin-bottom: 30px;
@@ -89,7 +94,6 @@ export const CommentFormList = styled.ul`
   width: 50%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 170px;
 `;
 
 export const CommentFormItem = styled.li`
