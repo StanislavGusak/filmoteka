@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Container from "../Container/Container";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { LoaderWraper, StyledScrollToTop, MainLoader } from './App.styled';
@@ -23,7 +22,7 @@ const ActorsInfo = lazy(() => import('../ActorsInfo/ActorsInfo'));
 const ExpectedMoviePage = lazy(() => import('../../pages/ExpectedMoviePage/ExpectedMoviePage'));
 const TopRatedPage = lazy(() => import('../../pages/TopRatedPage/TopRatedPage'));
 const ActorsMoviePage = lazy(() => import('../../pages/ActorsMoviePage/ActorsMoviePage'));
-const LibraryPage = lazy(() => import('../../pages/LibraryPage/LibraryPage'));
+const LibraryPage = lazy(() => import('../../pages/FavouritePage/FavouritePage'));
 const RegistrationPage = lazy(() => import('../../pages/RegistrationPage/RegistrationPage'));
 const LogInPage = lazy(() => import('../../pages/LogInPage/LogInPage'));
 
@@ -43,41 +42,41 @@ const App = () => {
             <ToastContainer />
             <Header />
             <StyledScrollToTop smooth />
-                <Suspense
-                    fallback={
-                        <LoaderWraper>
-                            <MainLoader size={350} color="aqua" />
-                        </LoaderWraper>}
-                >
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="movies" element={<MoviesPage />} />
-                        <Route
-                            path="registration"
-                            element={<RestictedRoute redirectTo="/" component={<RegistrationPage />} />}
-                        />
-                        <Route
-                            path="login"
-                            element={<RestictedRoute redirectTo="/" component={<LogInPage />} />}
-                        />
-                        <Route
-                            path="library"
-                            element={<PrivateRoute redirectTo="/login" component={<LibraryPage />} />}
-                        />
-                        <Route path="movie/actors/" element={<ActorsPage />} />
-                        <Route path="/actors/movies/:id" element={<ActorsMoviePage />} >
-                            <Route path="actors-info" element={<ActorsInfo />} />
-                        </Route>
-                        <Route path="movie/top-rated/" element={<TopRatedPage />} />
-                        <Route path="movie/expected-movies/" element={<ExpectedMoviePage />} />
-                        <Route path="/movies/:movieId" element={<MovieDetailsPage />} >
-                            <Route path="cast" element={<Cast />} />
-                            <Route path="review" element={<Reviews />} />
-                        </Route>
-                        <Route path="/genre/:id" element={<GenrePage />} />
-                        <Route path="*" element={<HomePage />} />
-                    </Routes>
-                </Suspense>
+            <Suspense
+                fallback={
+                    <LoaderWraper>
+                        <MainLoader size={350} color="aqua" />
+                    </LoaderWraper>}
+            >
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="movies" element={<MoviesPage />} />
+                    <Route
+                        path="registration"
+                        element={<RestictedRoute redirectTo="/" component={<RegistrationPage />} />}
+                    />
+                    <Route
+                        path="login"
+                        element={<RestictedRoute redirectTo="/" component={<LogInPage />} />}
+                    />
+                    <Route
+                        path="library"
+                        element={<PrivateRoute redirectTo="/login" component={<LibraryPage />} />}
+                    />
+                    <Route path="movie/actors/" element={<ActorsPage />} />
+                    <Route path="/actors/movies/:id" element={<ActorsMoviePage />} >
+                        <Route path="actors-info" element={<ActorsInfo />} />
+                    </Route>
+                    <Route path="movie/top-rated/" element={<TopRatedPage />} />
+                    <Route path="movie/expected-movies/" element={<ExpectedMoviePage />} />
+                    <Route path="/movies/:movieId" element={<MovieDetailsPage />} >
+                        <Route path="cast" element={<Cast />} />
+                        <Route path="review" element={<Reviews />} />
+                    </Route>
+                    <Route path="/genre/:id" element={<GenrePage />} />
+                    <Route path="*" element={<HomePage />} />
+                </Routes>
+            </Suspense>
             <Footer />
         </>
     );

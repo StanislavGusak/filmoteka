@@ -12,7 +12,7 @@ import {
     RatingStarsContainer,
     MoviesYear,
     ExpextedRating,
-} from './LibraryPage.styled';
+} from './FavouritePage.styled';
 
 const LibraryPage = () => {
     const [favoritesList, setFavoritesList] = useState([]);
@@ -27,7 +27,7 @@ const LibraryPage = () => {
     return (
         <>
             <Container>
-                <LibrarryTitle>Favorites</LibrarryTitle>
+                <LibrarryTitle>Favourites</LibrarryTitle>
                 <Link to={backLink}>
                     <BackDown />
                 </Link>

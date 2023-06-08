@@ -3,10 +3,14 @@ import styled from 'styled-components';
 export const StyleForm = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 320px;
+  width: 50%;
   gap: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  background-image: var(--background-header);
+  padding: 15px;
+  border-radius: 10px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const FeedbackCommentFroup = styled.div`
@@ -37,7 +41,7 @@ export const StyleInput = styled.input`
 export const Textarea = styled.textarea`
   box-sizing: border-box;
   padding: 10px;
-  min-height: 150px;
+  min-height: 100px;
   background-color: transparent;
   border: 1px solid var(--border-color);
   border-radius: 3px;
@@ -58,6 +62,8 @@ export const ButtonComment = styled.button`
   transition: all var(--transition);
   cursor: pointer;
   &:hover {
-    background-image: var(--background-body);
+    background-color: var(--color);
+    border: 1px solid var(--color);
+    color: var(--hover-btn);
   }
 `;

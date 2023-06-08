@@ -66,20 +66,22 @@ function HomePage() {
     }, [selectedLanguage.iso_639_1]);
 
     return (
-        <Container>
-            <ExpectedMoviesList />
-            <GanreList genres={genres} />
-            <section className={styles.trandingMovies}>
-                <InfiniteScroll
-                    dataLength={movies.length}
-                    next={() => fetchMovies(currentPage + 1)}
-                    hasMore={!isFetching}
-                    loader={<p>Loading...</p>}
-                >
-                    <MoviesList movies={movies} />
-                </InfiniteScroll>
-            </section>
-        </Container>
+        <>
+            <Container>
+                <ExpectedMoviesList />
+                <GanreList genres={genres} />
+                <section className={styles.trandingMovies}>
+                    <InfiniteScroll
+                        dataLength={movies.length}
+                        next={() => fetchMovies(currentPage + 1)}
+                        hasMore={!isFetching}
+                        loader={<p>Loading...</p>}
+                    >
+                        <MoviesList movies={movies} />
+                    </InfiniteScroll>
+                </section>
+            </Container>
+        </>
     );
 };
 

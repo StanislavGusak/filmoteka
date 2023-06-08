@@ -15,7 +15,7 @@ const MoviesBar = () => {
                 </li>
                 <li className={styles.moviebar__list__item}>
                     <Link to={`/movie/top-rated/`} state={{ from: location }}>
-                        Top Rated
+                        Top
                     </Link>
                 </li>
                 <li className={styles.moviebar__list__item}>

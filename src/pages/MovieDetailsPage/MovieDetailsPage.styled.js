@@ -1,30 +1,35 @@
 import styled from 'styled-components';
 import playIcon from '../../images/youtube.png';
 
-export const DetailsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-export const ColumnInfo = styled.div`
-  max-width: 50%;
-  padding: 10px;
-  @media screen and (max-width: 768px) {
-    max-width: 100%;
-  }
-`;
-
 export const PosterMovie = styled.img`
   position: absolute;
   width: 100%;
-  height: auto;
-  top: 0;
+  height: 100%;
+  object-fit: cover;
+  top: 98px;
   right: -50%;
   z-index: -1;
   transform: translate(-50%, 0);
   opacity: 0.1;
-  border-radius: 10px;
+`;
+
+export const DetailsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-image: url(${PosterMovie}) no-repeat center center;
+`;
+
+export const ColumnInfo = styled.div`
+  
+  width: 50%;
+  margin: 0 auto;
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const BtnBackDetailsWrapper = styled.div`
@@ -37,13 +42,16 @@ export const IconBack = styled.img`
 `;
 
 export const InfoTitle = styled.h1`
-  max-width: 90%;
+  max-width: 100%;
   font-size: 56px;
   color: var(--color);
   text-shadow: 0 0 1px black;
   margin-bottom: 10px;
   @media screen and (max-width: 768px) {
     font-size: 38px;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 28px;
   }
 `;
 
@@ -63,7 +71,7 @@ export const OverviewTitle = styled.h2`
 `;
 
 export const Overview = styled.p`
-  max-width: 600px;
+  max-width: 800px;
   font-size: 20px;
   color: var(--color);
   margin-bottom: 10px;
@@ -75,6 +83,7 @@ export const Overview = styled.p`
 
 export const GenreListDetails = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   color: gold;
 `;
@@ -86,6 +95,10 @@ export const ColumnImg = styled.div`
   padding: 10px;
   border-radius: 10px;
   overflow: hidden;
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+  }
+
   &:hover::before {
     pointer-events: none;
     content: '';
@@ -101,6 +114,7 @@ export const ColumnImg = styled.div`
     );
     transition: all 0.4s;
   }
+
   &:hover::after {
     pointer-events: none;
     content: '';
@@ -114,9 +128,6 @@ export const ColumnImg = styled.div`
     background-size: contain;
     transition: all 0.4s;
   }
-  &:hover .detalisImg {
-    transform: scale(1.1);
-  }
 `;
 
 export const DetalisImg = styled.img`
@@ -125,6 +136,9 @@ export const DetalisImg = styled.img`
   object-fit: cover;
   transition: all 0.4s;
   border-radius: 10px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const ReviewList = styled.ul`
@@ -161,19 +175,7 @@ export const VideoBackdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-`;
 
-export const VideoModal = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 500px;
-  width: 1100px;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.57);
-  border-radius: 3px;
-  box-shadow: 0 0 5px 5px rgba(201, 162, 45, 0.7),
-    inset 0 0 30px 10px rgba(201, 162, 45, 0.7);
 `;
 
 export const Iframe = styled.iframe`
@@ -190,28 +192,6 @@ export const IconBackModal = styled.div`
   top: 1%;
   left: 1%;
   cursor: pointer;
-`;
-
-export const AddMoviesBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  width: 100%;
-  padding: 5px;
-  color: var(--color);
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  background: var(--background-header);
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  transition: all 400ms;
-  &:hover {
-    background: var(--color);
-    color: var(--hover-btn);
-    border: 1px solid var(--color);
-  }
 `;
 
 export const AuthBtnText = styled.p`

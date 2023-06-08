@@ -18,6 +18,7 @@ export const FavoritesList = styled.ul`
   margin-bottom: 100px;
   margin-top: 50px;
   overflow: hidden;
+  padding: 25px;
 `;
 
 export const FavoritesItem = styled.div`

@@ -25,7 +25,7 @@ import {
     CommentFormList,
     CommentFormItem,
     DateInfo,
-  } from './Reviews.styled';
+} from './Reviews.styled';
 
 const Review = () => {
     const { movieId } = useParams();
@@ -117,9 +117,9 @@ const Review = () => {
     };
     return (
         <>
-            <Container>
-                <CommentForm onSubmit={handleSubmit} />
+            {/* <Container> */}
                 <ReviewAndCommentWrapper>
+                    <CommentForm onSubmit={handleSubmit} />
                     <CommentFormList>
                         {comments.length > 0 ? (
                             comments.map(comment => (
@@ -145,20 +145,20 @@ const Review = () => {
                             <InfoDiscription>No comments found</InfoDiscription>
                         )}
                     </CommentFormList>
-                    <ReviewList>
-                        {reviews && reviews.length > 0 ? (
-                            reviews.map(({ author, content, id }) => (
-                                <ReviewListItem key={id}>
-                                    <Author> {author}</Author>
-                                    <Content>{content}</Content>
-                                </ReviewListItem>
-                            ))
-                        ) : (
-                            <InfoDiscription>No review members found</InfoDiscription>
-                        )}
-                    </ReviewList>
                 </ReviewAndCommentWrapper>
-            </Container>
+                <ReviewList>
+                    {reviews && reviews.length > 0 ? (
+                        reviews.map(({ author, content, id }) => (
+                            <ReviewListItem key={id}>
+                                <Author> {author}</Author>
+                                <Content>{content}</Content>
+                            </ReviewListItem>
+                        ))
+                    ) : (
+                        <InfoDiscription>No review members found</InfoDiscription>
+                    )}
+                </ReviewList>
+            {/* </Container> */}
         </>
     );
 }

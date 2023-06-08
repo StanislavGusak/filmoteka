@@ -21,7 +21,7 @@ const Navigation = () => {
             <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]}>
                 <NavigationLink onClick={clickBackdrop} to="/">Home</NavigationLink>
                 <NavigationLink onClick={clickBackdrop} to="/movies">Movies</NavigationLink>
-                <NavigationLink onClick={clickBackdrop} to="/library">Library</NavigationLink>
+                <NavigationLink onClick={clickBackdrop} to="/library">Favourites</NavigationLink>
             </ul>
             <div onClick={handleMenu} className={styles.mobile__btn}>
                 {nav ? <VscClose size={25} /> : <VscMenu size={25} />}

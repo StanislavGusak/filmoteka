@@ -11,6 +11,8 @@ import BackDown from "../../components/BackDown/BackDown";
 import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
 import authSelector from '../../redux/auth/auth-selector';
 import posterImg from '../../images/poster.jpg';
+import starFill from '../../images/star-fill.svg';
+import starOutFill from '../../images/star.svg';
 import styles from './MovieDetailsPage.module.css';
 import {
     DetailsWrapper,
@@ -26,7 +28,6 @@ import {
     DetalisImg,
     ReviewList,
     VideoBackdrop,
-    AddMoviesBtn,
     AuthBtnText
 } from './MovieDetailsPage.styled';
 
@@ -85,13 +86,13 @@ const MovieDetalis = () => {
             setFavorites(newFavorites);
             localStorage.setItem('favorites', JSON.stringify(newFavorites));
             setIsFavorite(false);
-            toast.success('Film removed from the library');
+            toast.success('Film removed from favourites');
         } else {
             const newFavorites = [...favorites, movieToAdd];
             setFavorites(newFavorites);
             localStorage.setItem('favorites', JSON.stringify(newFavorites));
             setIsFavorite(true);
-            toast.success('Film added to the library');
+            toast.success('Film added to favourites');
         }
     }
 
@@ -144,127 +145,121 @@ const MovieDetalis = () => {
     return (
         <>
             {movie && (
-                <section className={styles.detalis}>
-                    <Container>
-                        <BtnBackDetailsWrapper>
-                            <Link to={backLink}>
-                                <BackDown />
-                            </Link>
-                        </BtnBackDetailsWrapper>
-                        <DetailsWrapper>
-                            <PosterMovie
-                                src={
-                                    movie.backdrop_path
-                                        ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
-                                        : posterImg
-                                }
-                                alt={movie.title}
-                            />
-                            <ColumnInfo>
-                                <InfoTitle>
-                                    {movie.title ? movie.title : 'Movie without a title'}
-                                </InfoTitle>
-                                <ScoreDetails>
-                                    User score: {(movie.vote_average * 10).toFixed(0)}%
-                                </ScoreDetails>
-                                <OverviewTitle>Overview</OverviewTitle>
-                                <Overview>
-                                    {movie.overview ? movie.overview : 'Movie without a overview'}
-                                </Overview>
-                                <GenreListDetails>
-                                    {movie.genres &&
-                                        movie.genres.map(({ name, id }) => (
-                                            <li key={id}>{name}</li>
-                                        ))}
-                                </GenreListDetails>
-                                <ReviewList>
-                                    <li className={styles.reviewiLstItem}>
+                <Container>
+                    <BtnBackDetailsWrapper>
+                        <Link to={backLink}>
+                            <BackDown />
+                        </Link>
+                    </BtnBackDetailsWrapper>
+                    <DetailsWrapper>
+                        <PosterMovie
+                            src={
+                                movie.backdrop_path
+                                    ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
+                                    : posterImg
+                            }
+                            alt={movie.title}
+                        />
+                        <ColumnInfo>
+                            <InfoTitle>
+                                {movie.title ? movie.title : 'Movie without a title'}
+                            </InfoTitle>
+                            <ScoreDetails>
+                                User score: {(movie.vote_average * 10).toFixed(0)}%
+                            </ScoreDetails>
+                            <OverviewTitle>Overview</OverviewTitle>
+                            <Overview>
+                                {movie.overview ? movie.overview : 'Movie without a overview'}
+                            </Overview>
+                            <GenreListDetails>
+                                {movie.genres &&
+                                    movie.genres.map(({ name, id }) => (
+                                        <li key={id}>{name}</li>
+                                    ))}
+                            </GenreListDetails>
+                            <ReviewList>
+                                <li className={styles.reviewiLstItem}>
+                                    <Link
+                                        to="cast"
+                                        state={location.state}
+                                        className={styles.cast}
+                                        onClick={henndleCastAndReviewSmooth}
+                                    >
+                                        Cast
+                                    </Link>
+                                </li>
+                                <li className={styles.reviewiLstItem}>
+                                    {isLoggedIn && (
                                         <Link
-                                            to="cast"
+                                            to="review"
                                             state={location.state}
-                                            className={styles.cast}
+                                            className={styles.review}
                                             onClick={henndleCastAndReviewSmooth}
                                         >
-                                            Cast
+                                            Rewiew
                                         </Link>
-                                    </li>
-
-                                    <li className={styles.reviewiLstItem}>
-                                        {isLoggedIn && (
-                                            <Link
-                                                to="review"
-                                                state={location.state}
-                                                className={styles.review}
-                                                onClick={henndleCastAndReviewSmooth}
-                                            >
-                                                Rewiew
-                                            </Link>
-                                        )}
-                                    </li>
-                                    <li className={styles.reviewiLstItem}>
-                                        <Link to={'/library'} onClick={toggleFavorites}>
-                                            <AddMoviesBtn disabled={!isLoggedIn} type="button">
-                                                {isFavorite
-                                                    ? 'Remove from library'
-                                                    : 'Add movie to library'}
-                                            </AddMoviesBtn>
-                                        </Link>
-                                        {!isLoggedIn && (
-                                            <AuthBtnText>
-                                                Register or log in to be able to add a movie to your
-                                                library
-                                            </AuthBtnText>
-                                        )}
-                                    </li>
-                                </ReviewList>
-                            </ColumnInfo>
-                            <ColumnImg>
-                                <DetalisImg
-                                    src={
-                                        movie.poster_path
-                                            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                                            : posterImg
-                                    }
-                                    alt={movie.title ? movie.title : 'Movie without a title'}
-                                    width={300}
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={handleFetchTrailer}
-                                />
-                                {urlModal && (
-                                    <VideoBackdrop onClick={clickBackdrop}>
-                                        <GiReturnArrow
-                                            className={styles.icon__back__modal}
-                                            onClick={closeModal}
-                                        />
-
-                                        <YouTube
-                                            className={styles.video__modal}
-                                            videoId={trailerId}
-                                            opts={{
-                                                width: '100%',
-                                                height: '100%',
-                                                playerVars: {
-                                                    autoplay: 1,
-                                                    controls: 0,
-                                                    cc_load_policy: 0,
-                                                    fs: 0,
-                                                    iv_load_policy: 0,
-                                                    modestbranding: 0,
-                                                    rel: 0,
-                                                    showinfo: 0,
-                                                },
-                                                origin: 'http://localhost:3000',
-                                            }}
-                                        />
-                                    </VideoBackdrop>
-                                )}
-                            </ColumnImg>
-                        </DetailsWrapper>
-                        <Suspense>
-                            <Outlet />
-                        </Suspense>
-                    </Container>
-                </section>
+                                    )}
+                                </li>
+                                <li className={styles.reviewiLstItem}>
+                                    <img
+                                        src={isFavorite ? starFill : starOutFill}
+                                        alt='Add to favourite'
+                                        onClick={toggleFavorites}
+                                        className={styles.favourite}
+                                    />
+                                    {!isLoggedIn && (
+                                        <AuthBtnText>
+                                            Register or log in to be able to add a movie to your
+                                            library
+                                        </AuthBtnText>
+                                    )}
+                                </li>
+                            </ReviewList>
+                        </ColumnInfo>
+                        <ColumnImg>
+                            <DetalisImg
+                                src={
+                                    movie.poster_path
+                                        ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                                        : posterImg
+                                }
+                                alt={movie.title ? movie.title : 'Movie without a title'}
+                                width={300}
+                                style={{ cursor: 'pointer' }}
+                                onClick={handleFetchTrailer}
+                            />
+                            {urlModal && (
+                                <VideoBackdrop onClick={clickBackdrop}>
+                                    <GiReturnArrow
+                                        className={styles.icon__back__modal}
+                                        onClick={closeModal}
+                                    />
+                                    <YouTube
+                                        videoId={trailerId}
+                                        opts={{
+                                            width: '100%',
+                                            height: '100%',
+                                            playerVars: {
+                                                autoplay: 1,
+                                                controls: 0,
+                                                cc_load_policy: 0,
+                                                fs: 0,
+                                                iv_load_policy: 0,
+                                                modestbranding: 0,
+                                                rel: 0,
+                                                showinfo: 0,
+                                            },
+                                            origin: 'http://localhost:3000',
+                                        }}
+                                    />
+                                </VideoBackdrop>
+                            )}
+                        </ColumnImg>
+                    </DetailsWrapper>
+                    <Suspense>
+                        <Outlet />
+                    </Suspense>
+                </Container>
             )}
         </>
     );

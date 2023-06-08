@@ -29,17 +29,20 @@ export const StyleFaTrashAlt = styled(FaTrashAlt)`
 
 export const ReviewAndCommentWrapper = styled.div`
   display: flex;
-  gap: 20px;
+  padding-top: 20px;
+  gap: 30px;
   justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 export const ReviewList = styled.ul`
 background-image: var(--background-header);
 padding: 15px;
 border-radius: 10px;
-width: 50%;
-display: flex;
-flex-direction: column;
+margin-top: 30px;
 `;
 
 export const ReviewListItem = styled.li``;
@@ -80,24 +83,25 @@ export const Content = styled.p`
 `;
 
 export const InfoDiscription = styled.p`
-  max-width: 300px;
   color: var(--color);
   font-size: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
 `;
 
 export const CommentFormList = styled.ul`
   background-image: var(--background-header);
-  padding: 15px;
   border-radius: 10px;
   width: 50%;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const CommentFormItem = styled.li`
   display: flex;
+  padding: 30px;
   flex-direction: column;
   gap: 10px;
 `;
@@ -147,7 +151,9 @@ export const SpanAuthor = styled.span`
 export const CommentAuthorText = styled.p`
   color: var(--color);
   margin-bottom: 30px;
-  text-align: center;
+  overflow: hidden;
+  text-align: justify;
+
   @media screen and (max-width: 660px) {
     font-size: 20px;
   }

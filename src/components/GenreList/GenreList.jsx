@@ -6,15 +6,17 @@ function GenreList({ genres }) {
     const location = useLocation();
 
     return (
-        <ul className={css.ganreList}>
-            {genres.map(({ id, name }) => (
-                <Link to={`genre/${id}`} state={{ from: location }} key={id}>
-                    <li className={css.ganreListItem}>
-                        <p>{name || 'Unknown'}</p>
-                    </li>
-                </Link>
-            ))}
-        </ul>
+        <div className={css.genreWrapper}>
+            <ul className={css.ganreList}>
+                {genres.map(({ id, name }) => (
+                    <Link to={`genre/${id}`} state={{ from: location }} key={id}>
+                        <li className={css.ganreListItem}>
+                            <p>{name || 'Unknown'}</p>
+                        </li>
+                    </Link>
+                ))}
+            </ul>
+        </div>
     );
 }
 export default GenreList;

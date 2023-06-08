@@ -1,9 +1,7 @@
-
-/* @import-normalize; */
-/* bring in normalize.css styles */
-
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -18,11 +16,16 @@ body[data-theme='dark'] {
   --background-movies-item: linear-gradient(to right, #efefbb, #d4d3dd);
   --color: rgb(41, 28, 28);
   --border-color: gray;
+  --border: gold;
   --transition: 400ms ease-in-out;
   --box-shadow-header: 0px 2px 8px rgba(0, 0, 0, 0.2);
   --hover-color-text: rgb(42, 155, 155);
   --hover-btn: #e4e6c6;
-
+  --light: #000000;
+  --dark: #d4d3dd; 
+  --grey: grey;
+  --white: white;
+  --gold: gold;
 }
 
 body[data-theme='light'] {
@@ -31,10 +34,16 @@ body[data-theme='light'] {
   --background-movies-item: linear-gradient(to right, #414345, #232526);
   --color: aqua;
   --border-color: gold;
+  --border: gray;
   --transition: 400ms ease-in-out;
   --box-shadow-header: 0px 2px 8px rgba(10, 216, 244, 0.4);
   --hover-color-text: rgb(115, 87, 87);
   --hover-btn: #414345;
+  --light: #d4d3dd;
+  --dark: #000000; 
+  --grey: grey;
+  --white: white;
+  --gold: gold;
 }
 
 code {
@@ -58,7 +67,7 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: grey;
+  background-color: var(--grey);
 }
 
 h1,
