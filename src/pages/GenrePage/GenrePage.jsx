@@ -12,7 +12,7 @@ const GenrePage = () => {
     const { id } = useParams();
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
     const { selectedLanguage } = useContext(LanguageContext);
     const location = useLocation();
     const backLink = location.state?.from ?? '/';
@@ -28,7 +28,7 @@ const GenrePage = () => {
         } catch (error) {
             toast.error('Failed to fetch movies.');
         }
-    }, [id, currentPage, selectedLanguage.iso_639_1]);
+    }, [id, currentPage, selectedLanguage]);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -38,10 +38,10 @@ const GenrePage = () => {
                 selectedLanguage.iso_639_1
             );
             setMovies(data.results);
-            setTotalPage(data.total_pages);
+            setTotalPages(data.total_pages);
         };
         fetchMovies();
-    }, [id, selectedLanguage.iso_639_1]);
+    }, [id, selectedLanguage]);
 
     useEffect(() => {
         if (currentPage > 1) {
@@ -58,7 +58,7 @@ const GenrePage = () => {
             <InfiniteScroll
                 dataLength={movies.length}
                 next={() => setCurrentPage(currentPage + 1)}
-                hasMore={movies.length < totalPage}
+                hasMore={movies.length < totalPages}
                 loader={<h4>Loading...</h4>}
             >
                 <MoviesList movies={movies} />

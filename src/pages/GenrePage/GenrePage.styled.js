@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const GenreListMoviesContainer = styled.div`
-  margin-top: 150px;
+  margin-top: 100px;
 `;
 
 export const GenreTitle = styled.h2`

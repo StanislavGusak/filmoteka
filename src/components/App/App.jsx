@@ -5,7 +5,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { LoaderWraper, StyledScrollToTop, MainLoader } from './App.styled';
+import Loader from "../Loader/Loader";
+import { LoaderWraper, StyledScrollToTop } from './App.styled';
 import authOperation from "../../redux/auth/auth-operation";
 import authSelector from "../../redux/auth/auth-selector";
 import RestictedRoute from "../RestictedRoute/RestictedRoute";
@@ -35,7 +36,7 @@ const App = () => {
     }, [dispatch]);
     return isRefreshing ? (
         <LoaderWraper>
-            <MainLoader size={350} color="aqua" />
+            <Loader />
         </LoaderWraper>
     ) : (
         <>
@@ -45,7 +46,7 @@ const App = () => {
             <Suspense
                 fallback={
                     <LoaderWraper>
-                        <MainLoader size={350} color="aqua" />
+                        <Loader />
                     </LoaderWraper>}
             >
                 <Routes>
@@ -63,12 +64,12 @@ const App = () => {
                         path="library"
                         element={<PrivateRoute redirectTo="/login" component={<LibraryPage />} />}
                     />
-                    <Route path="movie/actors/" element={<ActorsPage />} />
+                    <Route path="actors" element={<ActorsPage />} />
                     <Route path="/actors/movies/:id" element={<ActorsMoviePage />} >
                         <Route path="actors-info" element={<ActorsInfo />} />
                     </Route>
-                    <Route path="movie/top-rated/" element={<TopRatedPage />} />
-                    <Route path="movie/expected-movies/" element={<ExpectedMoviePage />} />
+                    <Route path="top-rated" element={<TopRatedPage />} />
+                    <Route path="expected" element={<ExpectedMoviePage />} />
                     <Route path="/movies/:movieId" element={<MovieDetailsPage />} >
                         <Route path="cast" element={<Cast />} />
                         <Route path="review" element={<Reviews />} />

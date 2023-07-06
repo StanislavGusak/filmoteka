@@ -1,16 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import Select from 'react-select';
 import { toast } from 'react-toastify';
 import apiTheMovieDB from '../../services/kinoApi';
-import Container from '../Container/Container';
 import MoviesList from '../MoviesList/MoviesList';
+import Loader from '../Loader/Loader';
 import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
 import {
-    CardsLoader,
     SelectWrapper,
-    SelectedYear,
-    SelectLabel,
     SearchText,
     StyleSelect,
 } from './SearchByYear.styled';
@@ -72,34 +68,28 @@ const SearchByYear = () => {
 
     return (
         <>
-            <Container>
-                <SelectWrapper>
-                    <SelectedYear>
-                        <SelectLabel htmlFor="year-select">Select a year:</SelectLabel>
-                        <StyleSelect
-                            classNamePrefix="react-select"
-                            name="year-select"
-                            id="year-select"
-                            value={{ value: selectedYear, label: selectedYear }}
-                            onChange={selectedOption => setSelectedYear(selectedOption.value)}
-                            options={yearOptions.map(year => ({
-                                value: year,
-                                label: year,
-                            }))}
-                            placeholder="Select a year"
-                            menuPlacement="auto"
-                        />
-                    </SelectedYear>
-                </SelectWrapper>
-                {movies.length > 0 ? (
-                    <MoviesList movies={movies} />
-                ) : loading ? (
-                    <CardsLoader size={50} />
-                ) : (
-                    <SearchText>Please select a year to see movies.</SearchText>
-                )}
-                {showButton && <ButtonLoadMore hendleIncrement={hendleIncrement} />}
-            </Container>
+            <SelectWrapper>
+                <StyleSelect
+                    classNamePrefix="react-select"
+                    name="year-select"
+                    id="year-select"
+                    value={{ value: selectedYear, label: selectedYear }}
+                    onChange={selectedOption => setSelectedYear(selectedOption.value)}
+                    options={yearOptions.map(year => ({
+                        value: year,
+                        label: year,
+                    }))}
+                    menuPlacement="auto"
+                />
+            </SelectWrapper>
+            {movies.length > 0 ? (
+                <MoviesList movies={movies} />
+            ) : loading ? (
+                <Loader />
+            ) : (
+                <SearchText>Please select a year...</SearchText>
+            )}
+            {showButton && <ButtonLoadMore hendleIncrement={hendleIncrement} />}
         </>
     );
 };

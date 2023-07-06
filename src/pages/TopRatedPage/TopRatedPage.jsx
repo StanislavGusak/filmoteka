@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 import apiTheMovieDB from "../../services/kinoApi";
 import Container from "../../components/Container/Container";
 import MoviesList from "../../components/MoviesList/MoviesList";
+import Loader from "../../components/Loader/Loader";
 import BackDown from "../../components/BackDown/BackDown";
-import { TitleTopRating, CardsLoader } from './TopRatedPage.styled';
+import { TitleTopRating } from './TopRatedPage.styled';
 import css from '../ActorsPage/ActorsPage.module.css';
 import { LanguageContext } from '../../components/LanguageContext/LanguageContext';
 
@@ -56,7 +57,7 @@ const TopRatedPage = () => {
                         <BackDown />
                     </Link>
                 {loading ? (
-                    <CardsLoader size={50} />
+                    <Loader />
                 ) : (
                     <MoviesList movies={movies} />
                 )}

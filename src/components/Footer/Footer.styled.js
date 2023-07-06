@@ -7,8 +7,8 @@ export const StyleFooter = styled.footer`
   right: 0;
   z-index: 1;
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background: var(--background-header);
 `;
 
@@ -21,6 +21,9 @@ export const FooterList = styled.ul`
 `;
 
 export const FooterItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30px;
 `;
 

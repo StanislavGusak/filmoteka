@@ -3,7 +3,7 @@ import { BtnBack } from "./BackDown.styled";
 const BackDown = () => {
     return (
         <>
-            <BtnBack type="button">&#8592; Go Back</BtnBack>
+            <BtnBack type="button">&#8678; Go Back</BtnBack>
         </>
     );
 };

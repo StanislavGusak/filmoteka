@@ -1,25 +1,5 @@
 import styled from 'styled-components';
 import { FaTrashAlt } from 'react-icons/fa';
-import { FaReact } from 'react-icons/fa';
-
-export const CardsLoader = styled(FaReact)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  fill: var(--color);
-  margin-left: auto;
-  margin-right: auto;
-  animation: rotate 5s infinite linear;
-  -webkit-animation: rotate 5s infinite linear;
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
 
 export const StyleFaTrashAlt = styled(FaTrashAlt)`
   margin-bottom: 10px;

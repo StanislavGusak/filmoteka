@@ -21,6 +21,9 @@ const Navigation = () => {
             <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]}>
                 <NavigationLink onClick={clickBackdrop} to="/">Home</NavigationLink>
                 <NavigationLink onClick={clickBackdrop} to="/movies">Movies</NavigationLink>
+                <NavigationLink onClick={clickBackdrop} to="/actors">Actors</NavigationLink>
+                <NavigationLink onClick={clickBackdrop} to="/top-rated">Top</NavigationLink>
+                <NavigationLink onClick={clickBackdrop} to="/expected">Expected</NavigationLink>
                 <NavigationLink onClick={clickBackdrop} to="/library">Favourites</NavigationLink>
             </ul>
             <div onClick={handleMenu} className={styles.mobile__btn}>

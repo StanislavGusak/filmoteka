@@ -2,14 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactPaginate from "react-paginate";
+import { FcSearch } from 'react-icons/fc'
 import { animateScroll as scroll } from 'react-scroll';
 import Container from "../../components/Container/Container";
 import BackDown from "../../components/BackDown/BackDown";
 import apiTheMovieDB from "../../services/kinoApi";
 import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
+import Loader from '../../components/Loader/Loader';
 import css from './ActorsPage.module.css';
 import {
-    CardsLoader,
+    SearchWrapper,
     Search,
     ActorList,
     ActorListItem,
@@ -79,21 +81,24 @@ const ActorsPage = () => {
 
     return (
         <Container>
-            <Search>
-                <StyleDebounceInput
-                    type="text"
-                    placeholder="Search actors"
-                    value={searchQuery}
-                    minLength={2}
-                    debounceTimeout={500}
-                    onChange={handleSearchChange}
-                />
-            </Search>
+            <SearchWrapper>
+                <Search>
+                    <StyleDebounceInput
+                        type="text"
+                        placeholder="Search actors..."
+                        value={searchQuery}
+                        minLength={2}
+                        debounceTimeout={500}
+                        onChange={handleSearchChange}
+                    />
+                    <FcSearch className={css.icon} />
+                </Search>
+            </SearchWrapper>
             <Link to={backLink}>
                 <BackDown />
             </Link>
             {loading ? (
-                <CardsLoader size={50} />
+                <Loader />
             ) : (
                 <>
                     <ActorList>

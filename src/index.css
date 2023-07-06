@@ -22,28 +22,32 @@ body[data-theme='dark'] {
   --hover-color-text: rgb(42, 155, 155);
   --hover-btn: #e4e6c6;
   --light: #000000;
-  --dark: #d4d3dd; 
+  --dark: #d4d3dd;
   --grey: grey;
   --white: white;
   --gold: gold;
+  --black: #000000;
+  --box-shadow: 0 4px 8px 0 var(--color), 0 6px 20px 0 var(--color);
 }
 
 body[data-theme='light'] {
   --background-body: linear-gradient(to right, #434343, #000000);
   --background-header: linear-gradient(to right, #414345, #232526);
   --background-movies-item: linear-gradient(to right, #414345, #232526);
-  --color: aqua;
+  --color: rgb(10, 230, 39);
   --border-color: gold;
   --border: gray;
   --transition: 400ms ease-in-out;
-  --box-shadow-header: 0px 2px 8px rgba(10, 216, 244, 0.4);
+  --box-shadow-header: 0px 2px 8px rgba(10, 223, 38, 0.4);
   --hover-color-text: rgb(115, 87, 87);
   --hover-btn: #414345;
   --light: #d4d3dd;
-  --dark: #000000; 
+  --dark: #000000;
   --grey: grey;
   --white: white;
   --gold: gold;
+  --black: #000000;
+  --box-shadow: 0 0 8px 0 var(--color), 0 0 20px 0 var(--color);
 }
 
 code {

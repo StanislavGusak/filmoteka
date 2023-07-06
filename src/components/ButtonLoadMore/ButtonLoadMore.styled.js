@@ -2,20 +2,25 @@ import styled from 'styled-components';
 
 export const BtnLoadMore = styled.button`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--color);
+  font-size: 18px;
   width: 200px;
   height: 50px;
-  border-radius: 5px;
-  background: var(--background-movies-item);
-  margin-left: auto;
-  margin-right: auto;
-  border: none;
-  text-transform: uppercase;
+  background-color: transparent;
   color: var(--color);
-  cursor: pointer;
+  margin: auto;
   transition: var(--transition);
+  text-transform: uppercase;
+  cursor: pointer;
   &:hover {
-    background: var(--background-body);
+    background: var(--color);
+    color: var(--hover-btn);
+  }
+  @media screen and (max-width: 768px) {
+    width: 150px;
+    height: 50px;
   }
 `;

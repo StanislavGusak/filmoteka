@@ -6,10 +6,10 @@ import { Navigation, Scrollbar, Autoplay, Pagination } from 'swiper';
 import Container from '../Container/Container';
 import apiTheMovieDB from '../../services/kinoApi';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
+import Loader from '../Loader/Loader';
 import 'swiper/css';
 import 'swiper/css/navigation'
 import {
-    CardsLoader,
     ExpectedWrapper,
     NavigationButton,
     ExpectedInfoWrapper,
@@ -51,7 +51,7 @@ const ExpectedMoviesList = () => {
     return (
         <>
             {loading ? (
-                <CardsLoader size={50} color="aqua" />
+                <Loader />
             ) : (
                 <>
                     <ExpectedWrapper>

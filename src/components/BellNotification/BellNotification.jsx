@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { TbBellPlusFilled, TbBellMinusFilled } from 'react-icons/tb';
 import apiTheMovieDB from '../../services/kinoApi';
+import Loader from '../Loader/Loader';
 import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
 import {
@@ -85,13 +86,13 @@ const BellNotification = () => {
                     <TbBellMinusFilled
                         onClick={handleClick}
                         size={20}
-                        color={viewed ? 'gray' : 'green'}
+                        color={viewed ? 'grey' : 'red'}
                     />
                 ) : (
                     <TbBellPlusFilled
                         onClick={handleClick}
                         size={20}
-                        color={viewed ? 'gray' : 'green'}
+                        color={viewed ? 'grey' : 'red'}
                     />
                 )}
             </BellWrapper>
@@ -100,7 +101,7 @@ const BellNotification = () => {
                     <BellListWrapper>
                         <BellList>
                             {loading ? (
-                                <CardsLoader size={50} />
+                                <Loader />
                             ) : (
                                 movies.map(
                                     ({ poster_path, title, id, release_date }, index) => (

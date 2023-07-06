@@ -1,7 +1,7 @@
 .header {
     background: var(--background-header);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     position: fixed;
     top: 0;
     left: 0;
@@ -24,13 +24,20 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+@media screen and (max-width: 550px) {
+    .navContainer {
+        gap: 0;
+    }
 }
 
 .WrapperLangAndTheme {
     display: flex;
+    justify-content: space-evenly;
     align-items: baseline;
-    gap: 10px;
+    gap: 30px;
 }
 

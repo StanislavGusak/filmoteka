@@ -1,31 +1,14 @@
 import styled from 'styled-components';
 import DebounceInput from 'react-debounce-input';
-import { FaReact } from 'react-icons/fa';
 
-export const CardsLoader = styled(FaReact)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  fill: var(--color);
-  margin-left: auto;
-  margin-right: auto;
-  animation: rotate 5s infinite linear;
-  -webkit-animation: rotate 5s infinite linear;
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+export const SearchWrapper = styled.div`
+  text-align: center;
 `;
 
 export const Search = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 150px;
+  display: inline-flex;
+  position: relative;
+  margin-top: 100px;
   margin-bottom: 20px;
 `;
 
@@ -34,13 +17,14 @@ export const ActorList = styled.ul`
   margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
 `;
 
 export const ActorListItem = styled.li`
   max-width: 220px;
   border: 1px solid gold;
+  border-radius: 5px;
   padding: 10px;
   background: var(--background-header);
 `;
@@ -63,14 +47,14 @@ export const ActorsRating = styled.p`
 
 export const StyleDebounceInput = styled(DebounceInput)`
   box-sizing: border-box;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--white);
+  border: 1px solid grey;
+  font-size: 16px;
+  outline: none;
+  padding: 5px;
+  color: var(--black);
   width: 200px;
-  height: 50px;
-  background: var(--background-header);
-  color: var(--color);
-  padding-left: 10px;
-  
   &:focus {
     outline: none;
   }

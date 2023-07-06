@@ -2,7 +2,8 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import apiTheMovieDB from '../../services/kinoApi';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
-import { CastList, CastItem, CastName, CardsLoader } from './CastMovie.styled';
+import Loader from '../Loader/Loader';
+import { CastList, CastItem, CastName } from './CastMovie.styled';
 
 const CastMovie = () => {
     const { movieId } = useParams();
@@ -26,7 +27,7 @@ const CastMovie = () => {
     }, [movieId, selectedLanguage]);
 
     if (isLoading) {
-        return <CardsLoader size={50} />;
+        return <Loader />;
     }
 
     if (error) {

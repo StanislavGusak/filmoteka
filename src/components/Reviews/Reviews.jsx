@@ -6,7 +6,7 @@ import moment from 'moment';
 import { toast } from "react-toastify";
 import authSelector from '../../redux/auth/auth-selector';
 import apiTheMovieDB from "../../services/kinoApi";
-import Container from "../Container/Container";
+import Loader from "../Loader/Loader";
 import CommentForm from '../ComentForm/ComentForm';
 import { LanguageContext } from "../LanguageContext/LanguageContext";
 import {
@@ -16,7 +16,6 @@ import {
     ReviewList,
     ReviewListItem,
     InfoDiscription,
-    CardsLoader,
     StyleFaTrashAlt,
     CommentAuthorName,
     CommentAuthorText,
@@ -62,7 +61,7 @@ const Review = () => {
     }, []);
 
     if (isLoading) {
-        return <CardsLoader size={30} />;
+        return <Loader />;
     }
 
     if (error) {
@@ -117,48 +116,46 @@ const Review = () => {
     };
     return (
         <>
-            {/* <Container> */}
-                <ReviewAndCommentWrapper>
-                    <CommentForm onSubmit={handleSubmit} />
-                    <CommentFormList>
-                        {comments.length > 0 ? (
-                            comments.map(comment => (
-                                <CommentFormItem key={comment.id}>
-                                    <StyleFaTrashAlt
-                                        onClick={() => handleDeleteComment(comment.id)}
-                                        size={20}
-                                        color="red"
-                                    />
-                                    <AuthorWrapper>
-                                        <SpanAuthor>Author:</SpanAuthor>
-                                        <CommentAuthorName>{comment.name}</CommentAuthorName>
-                                    </AuthorWrapper>
-                                    <CommentAuthorText>{comment.number}</CommentAuthorText>
-                                    <DateInfo>
-                                        {moment(comment.created_at).format(
-                                            'MMMM Do YYYY, h:mm:ss a'
-                                        )}
-                                    </DateInfo>
-                                </CommentFormItem>
-                            ))
-                        ) : (
-                            <InfoDiscription>No comments found</InfoDiscription>
-                        )}
-                    </CommentFormList>
-                </ReviewAndCommentWrapper>
-                <ReviewList>
-                    {reviews && reviews.length > 0 ? (
-                        reviews.map(({ author, content, id }) => (
-                            <ReviewListItem key={id}>
-                                <Author> {author}</Author>
-                                <Content>{content}</Content>
-                            </ReviewListItem>
+            <ReviewAndCommentWrapper>
+                <CommentForm onSubmit={handleSubmit} />
+                <CommentFormList>
+                    {comments.length > 0 ? (
+                        comments.map(comment => (
+                            <CommentFormItem key={comment.id}>
+                                <StyleFaTrashAlt
+                                    onClick={() => handleDeleteComment(comment.id)}
+                                    size={20}
+                                    color="red"
+                                />
+                                <AuthorWrapper>
+                                    <SpanAuthor>Author:</SpanAuthor>
+                                    <CommentAuthorName>{comment.name}</CommentAuthorName>
+                                </AuthorWrapper>
+                                <CommentAuthorText>{comment.number}</CommentAuthorText>
+                                <DateInfo>
+                                    {moment(comment.created_at).format(
+                                        'MMMM Do YYYY, h:mm:ss a'
+                                    )}
+                                </DateInfo>
+                            </CommentFormItem>
                         ))
                     ) : (
-                        <InfoDiscription>No review members found</InfoDiscription>
+                        <InfoDiscription>No comments found</InfoDiscription>
                     )}
-                </ReviewList>
-            {/* </Container> */}
+                </CommentFormList>
+            </ReviewAndCommentWrapper>
+            <ReviewList>
+                {reviews && reviews.length > 0 ? (
+                    reviews.map(({ author, content, id }) => (
+                        <ReviewListItem key={id}>
+                            <Author> {author}</Author>
+                            <Content>{content}</Content>
+                        </ReviewListItem>
+                    ))
+                ) : (
+                    <InfoDiscription>No review members found</InfoDiscription>
+                )}
+            </ReviewList>
         </>
     );
 }

@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import apiTheMovieDB from '../../services/kinoApi';
-import Container from '../Container/Container';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
+import Loader from '../Loader/Loader';
 import {
     CardsLoader,
     InfoActorContainer,
@@ -52,9 +52,9 @@ const ActorsInfo = () => {
     };
 
     return (
-        <Container>
+        <>
             {loading ? (
-                <CardsLoader />
+                <Loader />
             ) : (
                 <div>
                     {actorsInfo && (
@@ -100,7 +100,7 @@ const ActorsInfo = () => {
                     )}
                 </div>
             )}
-        </Container>
+        </>
     );
 };
 

@@ -3,11 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactPaginate from 'react-paginate';
 import apiTheMovieDB from "../../services/kinoApi";
-import { CardsLoader, ExpectedTitle, BtnBackExpectedWrapper } from "./ExpectedMoviePage.styled";
+import Loader from "../../components/Loader/Loader";
 import Container from "../../components/Container/Container";
 import BackDown from "../../components/BackDown/BackDown";
 import MoviesList from "../../components/MoviesList/MoviesList";
 import { LanguageContext } from "../../components/LanguageContext/LanguageContext";
+import { ExpectedTitle, BtnBackExpectedWrapper } from "./ExpectedMoviePage.styled";
 import css from '../ActorsPage/ActorsPage.module.css';
 
 const ExpectedMoviePage =() => {
@@ -57,7 +58,7 @@ const ExpectedMoviePage =() => {
                     </Link>
                 </BtnBackExpectedWrapper>
                 {loading ? (
-                    <CardsLoader size={50} />
+                    <Loader />
                 ) : (
                     <>
                         <MoviesList movies={movies} />

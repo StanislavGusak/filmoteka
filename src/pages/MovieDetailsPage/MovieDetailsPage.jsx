@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense, useContext } from "react";
 import { useLocation, useParams, Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { GiReturnArrow } from 'react-icons/gi';
+import { TiArrowBack } from 'react-icons/ti';
 import { animateScroll as scroll } from 'react-scroll';
 import YouTube from 'react-youtube';
 import apiTheMovieDB from "../../services/kinoApi";
@@ -164,6 +164,20 @@ const MovieDetalis = () => {
                             <InfoTitle>
                                 {movie.title ? movie.title : 'Movie without a title'}
                             </InfoTitle>
+                            <span className={styles.reviewiLstItem}>
+                                <img
+                                    src={isFavorite ? starFill : starOutFill}
+                                    alt='Add to favourite'
+                                    onClick={toggleFavorites}
+                                    className={styles.favourite}
+                                />
+                                {!isLoggedIn && (
+                                    <AuthBtnText>
+                                        Register or log in to be able to add a movie to your
+                                        library
+                                    </AuthBtnText>
+                                )}
+                            </span>
                             <ScoreDetails>
                                 User score: {(movie.vote_average * 10).toFixed(0)}%
                             </ScoreDetails>
@@ -200,20 +214,6 @@ const MovieDetalis = () => {
                                         </Link>
                                     )}
                                 </li>
-                                <li className={styles.reviewiLstItem}>
-                                    <img
-                                        src={isFavorite ? starFill : starOutFill}
-                                        alt='Add to favourite'
-                                        onClick={toggleFavorites}
-                                        className={styles.favourite}
-                                    />
-                                    {!isLoggedIn && (
-                                        <AuthBtnText>
-                                            Register or log in to be able to add a movie to your
-                                            library
-                                        </AuthBtnText>
-                                    )}
-                                </li>
                             </ReviewList>
                         </ColumnInfo>
                         <ColumnImg>
@@ -229,8 +229,8 @@ const MovieDetalis = () => {
                                 onClick={handleFetchTrailer}
                             />
                             {urlModal && (
-                                <VideoBackdrop onClick={clickBackdrop}>
-                                    <GiReturnArrow
+                                <VideoBackdrop>
+                                    <TiArrowBack
                                         className={styles.icon__back__modal}
                                         onClick={closeModal}
                                     />

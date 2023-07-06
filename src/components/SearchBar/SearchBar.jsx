@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import PropTypes from 'prop-types';
+import { FcSearch } from 'react-icons/fc';
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ onSubmit }) => {
@@ -28,11 +29,11 @@ const SearchBar = ({ onSubmit }) => {
                 value={query}
                 type="text"
                 autoComplete="off"
-                placeholder="Enter the movie name"
+                placeholder="Search..."
                 onChange={handleQueryChange}
             />
             <button type="submit" className={styles.search__btn}>
-                Search
+              <FcSearch className={styles.icon} />
             </button>
         </form>
     );

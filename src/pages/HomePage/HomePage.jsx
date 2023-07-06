@@ -9,7 +9,7 @@ import { LanguageContext } from "../../components/LanguageContext/LanguageContex
 import apiTheMovieDB from "../../services/kinoApi";
 import styles from './HomePage.module.css';
 
-function HomePage() {
+const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [isFetching, setIsFetching] = useState(false);

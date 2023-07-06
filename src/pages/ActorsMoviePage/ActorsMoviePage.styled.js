@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BtnBackWrapper = styled.div`
-  margin-top: 150px;
+  margin-top: 100px;
   margin-bottom: 30px;
 `;
 

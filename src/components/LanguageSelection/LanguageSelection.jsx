@@ -75,7 +75,7 @@ const LanguageSelection = () => {
         <>
             <StyleFiGlobe onClick={handleToggleList} size={20} />
             <ul className={isListOpen ? [styles.list, styles.active].join(' ') : [styles.list]}>
-                <LanguageTitle>language</LanguageTitle>
+                <LanguageTitle>Language</LanguageTitle>
                 {languages.map(language => (
                     <LanguageItem
                         key={language.iso_639_1}

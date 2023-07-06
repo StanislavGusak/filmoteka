@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-
 `;
 
 export const WelcomeMessage = styled.p`

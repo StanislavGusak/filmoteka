@@ -1,30 +1,10 @@
 import styled, { css } from 'styled-components';
 import { SwiperSlide } from 'swiper/react';
 import { AiFillFastForward, AiFillFastBackward } from 'react-icons/ai';
-import { FaReact } from 'react-icons/fa';
-
-export const CardsLoader = styled(FaReact)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  fill: var(--color);
-  animation: rotate 5s infinite linear;
-  -webkit-animation: rotate 5s infinite linear;
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
 
 export const ExpectedWrapper = styled.div`
   overflow: hidden;
-  margin-top: 150px;
+  margin-top: 100px;
   height: 100%;
 `;
 

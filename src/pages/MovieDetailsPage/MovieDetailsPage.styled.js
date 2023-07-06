@@ -6,7 +6,7 @@ export const PosterMovie = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  top: 98px;
+  top: 84px;
   right: -50%;
   z-index: -1;
   transform: translate(-50%, 0);
@@ -15,34 +15,30 @@ export const PosterMovie = styled.img`
 
 export const DetailsWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   background-image: url(${PosterMovie}) no-repeat center center;
 `;
 
 export const ColumnInfo = styled.div`
-  
-  width: 50%;
-  margin: 0 auto;
+  position: relative;
+  max-width: 50%;
+  margin: 0;
   @media screen and (max-width: 1024px) {
-    width: 80%;
+    max-width: 80%;
   }
   @media screen and (max-width: 768px) {
-    width: 100%;
+    max-width: 100%;
   }
 `;
 
 export const BtnBackDetailsWrapper = styled.div`
-  margin-top: 150px;
+  margin-top: 120px;
   margin-bottom: 30px;
 `;
 
-export const IconBack = styled.img`
-  margin-right: 10px;
-`;
-
 export const InfoTitle = styled.h1`
-  max-width: 100%;
+  max-width: 90%;
   font-size: 56px;
   color: var(--color);
   text-shadow: 0 0 1px black;
@@ -71,7 +67,6 @@ export const OverviewTitle = styled.h2`
 `;
 
 export const Overview = styled.p`
-  max-width: 800px;
   font-size: 20px;
   color: var(--color);
   margin-bottom: 10px;
@@ -143,6 +138,7 @@ export const DetalisImg = styled.img`
 
 export const ReviewList = styled.ul`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 30px;
@@ -170,28 +166,11 @@ export const Review = styled.div`
 
 export const VideoBackdrop = styled.div`
   position: fixed;
-  top: 0;
+  top: 20px;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-
-`;
-
-export const Iframe = styled.iframe`
-  width: 100%;
-  height: 100%;
-`;
-
-export const IconBackModal = styled.div`
-  position: absolute;
-  display: flex;
-  fill: orange;
-  width: 100px;
-  height: 50px;
-  top: 1%;
-  left: 1%;
-  cursor: pointer;
 `;
 
 export const AuthBtnText = styled.p`

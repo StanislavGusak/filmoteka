@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const LibrarryTitle = styled.h1`
-  margin-top: 150px;
+  margin-top: 100px;
   margin-bottom: 30px;
   font-size: 24px;
   color: var(--color);
@@ -15,10 +15,8 @@ export const FavoritesList = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 100px;
-  margin-top: 50px;
+  margin-top: 30px;
   overflow: hidden;
-  padding: 25px;
 `;
 
 export const FavoritesItem = styled.div`

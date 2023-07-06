@@ -3,11 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
 import apiTheMovieDB from "../../services/kinoApi";
-import Container from "../../components/Container/Container";
 import MoviesList from "../../components/MoviesList/MoviesList";
-import MoviesBar from '../../components/MoviesBar/MoviesBar';
 import SearchBar from "../../components/SearchBar/SearchBar";
 import styles from './MoviesPage.module.css';
+import SearchByYear from "../../components/SearchByYear/SearchByYear";
 
 const MoviesPage = () => {
     const navigate = useNavigate();
@@ -63,24 +62,21 @@ const MoviesPage = () => {
     };
 
     return (
-        <Container>
-            <section className={styles.search__bar}>
+        <div className={styles.movies__page}>
+            <div className={styles.search__wrapper}>
                 <SearchBar onSubmit={handleFormSubmit} />
-                <MoviesBar />
-            </section>
-            <section className={styles.movies__list__search}>
-                {movies && (
-                    <InfiniteScroll
-                        dataLength={movies.length}
-                        next={handleLoadMore}
-                        hasMore={hasMore}
-                        loader={<p>Loading...</p>}
-                    >
-                        <MoviesList movies={movies} />
-                    </InfiniteScroll>
-                )}
-            </section>
-        </Container>
+                <SearchByYear />
+            </div>
+            <MoviesList movies={movies} />
+            <InfiniteScroll
+                dataLength={movies.length}
+                next={handleLoadMore}
+                hasMore={hasMore}
+                loader={<p>Loading...</p>}
+            >
+                <MoviesList movies={movies} />
+            </InfiniteScroll>
+        </div>
     )
 };
 
