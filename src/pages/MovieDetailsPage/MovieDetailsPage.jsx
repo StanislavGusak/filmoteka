@@ -46,7 +46,7 @@ const MovieDetalis = () => {
 
     const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
 
-    function handleFetchTrailer() {
+    const handleFetchTrailer = () => {
         apiTheMovieDB
             .fetchTrailerMovies(movieId, selectedLanguage.iso_639_1)
             .then(videos => {
@@ -117,13 +117,13 @@ const MovieDetalis = () => {
         setUrlModal(false);
         setTrailerId(null);
         document.body.style.overflow = 'auto';
-    }
+    };
 
     const clickBackdrop = e => {
         if (e.currentTarget === e.target) {
-            closeModal();
+          closeModal();
         }
-    };
+      };
 
     const clickKeyDown = e => {
         if (e.code === 'Escape') {
@@ -229,12 +229,13 @@ const MovieDetalis = () => {
                                 onClick={handleFetchTrailer}
                             />
                             {urlModal && (
-                                <VideoBackdrop>
+                                <VideoBackdrop onClick={clickBackdrop}>
                                     <TiArrowBack
                                         className={styles.icon__back__modal}
                                         onClick={closeModal}
                                     />
                                     <YouTube
+                                        className={styles.video__modal}
                                         videoId={trailerId}
                                         opts={{
                                             width: '100%',

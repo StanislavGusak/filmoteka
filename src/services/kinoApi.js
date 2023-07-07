@@ -2,66 +2,66 @@ import axios from 'axios';
 const URL = `https://api.themoviedb.org/3/`;
 const KEY = '4d8a40deb29f91051ef07c892ab10f05';
 
-const fetchTrending = (page = 1) => {
+const fetchTrending = (page = 1, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}trending/all/day?api_key=${KEY}&page=${page}`)
+    .get(`${URL}trending/all/day?api_key=${KEY}&page=${page}&language=${selectedLanguage}`)
     .then(responce => responce.data.results);
 };
 
 const fetchSearchMovie = (query, page = 1) => {
     return axios
-    .get(`${URL}search/movie?query=${query}&api_key=${KEY}&page=${page}`)
+    .get(`${URL}search/movie?query=${query}&api_key=${KEY}&page=${page}&language=en-US`)
     .then(responce => responce.data.results);
 };
 
-const fetchMovieDetails = (id) => {
+const fetchMovieDetails = (id, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}movie/${id}?api_key=${KEY}`)
+    .get(`${URL}movie/${id}?api_key=${KEY}&language=${selectedLanguage}`)
     .then(responce => responce.data);
 };
 
-const fetchMovieCredits = (id) => {
+const fetchMovieCredits = (id, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}movie/${id}/credits?api_key=${KEY}`)
+    .get(`${URL}movie/${id}/credits?api_key=${KEY}&language=${selectedLanguage}`)
     .then(responce => responce.data);
 };
 
-const fetchMovieReviews = (id) => {
+const fetchMovieReviews = (id, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}movie/${id}/reviews?api_key=${KEY}`)
+    .get(`${URL}movie/${id}/reviews?api_key=${KEY}&language=${selectedLanguage}`)
     .then(responce => responce.data.results);
 };
 
-const fetchTrailerMovies = (movieId) => {
+const fetchTrailerMovies = (movieId, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}movie/${movieId}/videos?api_key=${KEY}`)
+    .get(`${URL}movie/${movieId}/videos?api_key=${KEY}&language=${selectedLanguage}`)
     .then(responce => responce.data.results);
 };
 
-const fetchAllGenres = () => {
+const fetchAllGenres = (selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}/genre/movie/list?api_key=${KEY}`)
+    .get(`${URL}/genre/movie/list?api_key=${KEY}&language=${selectedLanguage}`)
     .then(responce => responce.data.genres);
 };
 
-const fetchByGenre = (id, page = 1) => {
+const fetchByGenre = (id, page = 1, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}/discover/movie?api_key=${KEY}&with_genres=${id}&page=${page}`)
+    .get(`${URL}/discover/movie?api_key=${KEY}&with_genres=${id}&page=${page}&language=${selectedLanguage}`)
     .then(responce => responce.data);
 };
 
-const fetchActors = (page = 1, query = '') => {
+const fetchActors = (page = 1, query = '', selectedLanguage = 'en') => {
     const url = query
-    ? `${URL}search/person?api_key=${KEY}&page=${page}&query=${query}`
-    : `${URL}person/popular?api_key=${KEY}&page=${page}`;
+    ? `${URL}search/person?api_key=${KEY}&page=${page}&query=${query}&language=${selectedLanguage}`
+    : `${URL}person/popular?api_key=${KEY}&page=${page}&language=${selectedLanguage}`;
     return axios
     .get(url)
     .then(responce => responce.data);
 };
 
-const fetchMoviesByActors = (id, page = 1) => {
+const fetchMoviesByActors = (id, page = 1, selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}person/${id}/movie_credits?api_key=${KEY}&page=${page}`)
+    .get(`${URL}person/${id}/movie_credits?api_key=${KEY}&page=${page}&language=${selectedLanguage}`)
     .then(responce => responce.data.cast);
 };
 
@@ -71,30 +71,30 @@ function fetchActorInfoAndMovies(id, selectedLanguage = 'en') {
       .then(response => response.data);
   }
 
-const fetchByYear = (page = 1, selectedYear) => {
+const fetchByYear = (page = 1, selectedYear, selectedLanguage = 'en') => {
     return axios 
-    .get(`${URL}discover/movie?api_key=${KEY}&sort_by=popularity.desc&page=${page}&primary_release_year=${selectedYear}`)
+    .get(`${URL}discover/movie?api_key=${KEY}&sort_by=popularity.desc&page=${page}&primary_release_year=${selectedYear}&language=${selectedLanguage}`)
     .then(responce => responce.data.results);
 };
 
-const fetchExpectedMovies = () => {
+const fetchExpectedMovies = (selectedLanguage = 'en') => {
     return axios
-    .get(`${URL}/movie/upcoming?api_key=${KEY}`)
+    .get(`${URL}/movie/upcoming?api_key=${KEY}&language=${selectedLanguage}`)
     .then(responce => responce.data.results);
 };
 
-const fetchMoviesByRaiting = (currentPage = 1) => {
+const fetchMoviesByRaiting = (currentPage = 1, selectedLanguage = 'en') => {
     return axios 
-    .get(`${URL}/movie/top_rated?api_key=${KEY}&page=${currentPage}`)
+    .get(`${URL}/movie/top_rated?api_key=${KEY}&page=${currentPage}&language=${selectedLanguage}`)
     .then(responce => responce.data);
 };
 
-const fetchWaitingForMovies = (currentPage =1) => {
+const fetchWaitingForMovies = (currentPage =1, selectedLanguage = 'en') => {
     return axios
     .get(
         `${URL}/movie/upcoming?api_key=${KEY}&primary_release_date.gte=${new Date()
           .toISOString()
-          .slice(0, 10)}&page=${currentPage}`
+          .slice(0, 10)}&page=${currentPage}&language=${selectedLanguage}`
     )
     .then(responce => responce.data);
 };

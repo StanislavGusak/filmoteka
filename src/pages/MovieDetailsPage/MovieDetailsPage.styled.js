@@ -4,7 +4,7 @@ import playIcon from '../../images/youtube.png';
 export const PosterMovie = styled.img`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   top: 84px;
   right: -50%;
@@ -16,25 +16,24 @@ export const PosterMovie = styled.img`
 export const DetailsWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
   background-image: url(${PosterMovie}) no-repeat center center;
+  bacground-position: center;
+  margin-top: 20px;
+  @media screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const ColumnInfo = styled.div`
   position: relative;
   max-width: 50%;
-  margin: 0;
   @media screen and (max-width: 1024px) {
-    max-width: 80%;
-  }
-  @media screen and (max-width: 768px) {
     max-width: 100%;
   }
 `;
 
 export const BtnBackDetailsWrapper = styled.div`
   margin-top: 120px;
-  margin-bottom: 30px;
 `;
 
 export const InfoTitle = styled.h1`
@@ -53,7 +52,7 @@ export const InfoTitle = styled.h1`
 
 export const ScoreDetails = styled.p`
   font-size: 20px;
-  color: gold;
+  color: var(--border-color);
   margin-bottom: 10px;
 `;
 
@@ -80,7 +79,7 @@ export const GenreListDetails = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  color: gold;
+  color: var(--border-color);
 `;
 
 export const ColumnImg = styled.div`
@@ -126,7 +125,7 @@ export const ColumnImg = styled.div`
 `;
 
 export const DetalisImg = styled.img`
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   transition: all 0.4s;
@@ -166,9 +165,10 @@ export const Review = styled.div`
 
 export const VideoBackdrop = styled.div`
   position: fixed;
-  top: 20px;
+  z-index: 30;
+  top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 `;

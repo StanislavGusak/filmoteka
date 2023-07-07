@@ -2,36 +2,48 @@ import styled from 'styled-components';
 
 export const InfoActorContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
   margin-bottom: 20px;
+  padding: 10px 0;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const ActorInfoMain = styled.div`
-  max-width: 50%;
+  width: 50%;
   padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 5px;
   background: var(--background-header);
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export const ActorInfoImg = styled.img`
-  max-width: 100%;
+  width: 100%;
   border-radius: 5px;
   margin-bottom: 10px;
 `;
 
 export const ActorsDetalis = styled.div`
-  max-width: 50%;
-  padding: 10px;
+  width: 50%;
+  overflow-wrap: break-word;
   border-radius: 5px;
+  padding-top: 10px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export const ActorsInfoName = styled.h3`
   color: var(--border-color);
   font-size: 37px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
 `;
 

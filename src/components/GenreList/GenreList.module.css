@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     width: 150px;
+    height: 38px;
     background: var(--background-movies-item);
     padding: 10px;
     border-radius: 5px;

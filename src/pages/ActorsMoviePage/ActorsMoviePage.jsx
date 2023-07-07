@@ -24,11 +24,6 @@ const ActorsMoviesPage = () => {
     const [error, setError] = useState(null);
 
     const location = useLocation();
-    const navigate = useNavigate();
-
-    const handleGoBack = () => {
-        navigate('/movie/actors/');
-    };
 
     useEffect(() => {
         apiTheMovieDB
