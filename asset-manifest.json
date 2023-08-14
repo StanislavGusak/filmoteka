@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/filmoteka/static/css/main.1e0a7a41.css",
-    "main.js": "/filmoteka/static/js/main.ba5899c8.js",
+    "main.js": "/filmoteka/static/js/main.ecc7c194.js",
     "static/css/898.e49a1f04.chunk.css": "/filmoteka/static/css/898.e49a1f04.chunk.css",
     "static/js/898.f8848360.chunk.js": "/filmoteka/static/js/898.f8848360.chunk.js",
     "static/css/603.fe0ba3ab.chunk.css": "/filmoteka/static/css/603.fe0ba3ab.chunk.css",
@@ -21,11 +21,12 @@
     "static/js/676.ce96b0fb.chunk.js": "/filmoteka/static/js/676.ce96b0fb.chunk.js",
     "static/css/889.40f07b0e.chunk.css": "/filmoteka/static/css/889.40f07b0e.chunk.css",
     "static/js/889.57eef2ef.chunk.js": "/filmoteka/static/js/889.57eef2ef.chunk.js",
-    "static/css/283.3534b767.chunk.css": "/filmoteka/static/css/283.3534b767.chunk.css",
+    "static/css/283.10586ee2.chunk.css": "/filmoteka/static/css/283.10586ee2.chunk.css",
     "static/js/283.eead1756.chunk.js": "/filmoteka/static/js/283.eead1756.chunk.js",
-    "static/css/931.3534b767.chunk.css": "/filmoteka/static/css/931.3534b767.chunk.css",
-    "static/js/931.17820bed.chunk.js": "/filmoteka/static/js/931.17820bed.chunk.js",
-    "static/js/815.95ce093b.chunk.js": "/filmoteka/static/js/815.95ce093b.chunk.js",
+    "static/css/931.10586ee2.chunk.css": "/filmoteka/static/css/931.10586ee2.chunk.css",
+    "static/js/931.06c0f3ef.chunk.js": "/filmoteka/static/js/931.06c0f3ef.chunk.js",
+    "static/css/815.10586ee2.chunk.css": "/filmoteka/static/css/815.10586ee2.chunk.css",
+    "static/js/815.815b5494.chunk.js": "/filmoteka/static/js/815.815b5494.chunk.js",
     "static/js/667.fa907bf6.chunk.js": "/filmoteka/static/js/667.fa907bf6.chunk.js",
     "static/js/48.2facae87.chunk.js": "/filmoteka/static/js/48.2facae87.chunk.js",
     "static/js/728.a51f1567.chunk.js": "/filmoteka/static/js/728.a51f1567.chunk.js",
@@ -41,7 +42,7 @@
     "static/media/star-fill.svg": "/filmoteka/static/media/star-fill.995293015fadf4d702721a21ef7a654a.svg",
     "static/media/star.svg": "/filmoteka/static/media/star.eac2503cb04dd9080d5624a8170e5d88.svg",
     "main.1e0a7a41.css.map": "/filmoteka/static/css/main.1e0a7a41.css.map",
-    "main.ba5899c8.js.map": "/filmoteka/static/js/main.ba5899c8.js.map",
+    "main.ecc7c194.js.map": "/filmoteka/static/js/main.ecc7c194.js.map",
     "898.e49a1f04.chunk.css.map": "/filmoteka/static/css/898.e49a1f04.chunk.css.map",
     "898.f8848360.chunk.js.map": "/filmoteka/static/js/898.f8848360.chunk.js.map",
     "603.fe0ba3ab.chunk.css.map": "/filmoteka/static/css/603.fe0ba3ab.chunk.css.map",
@@ -61,11 +62,12 @@
     "676.ce96b0fb.chunk.js.map": "/filmoteka/static/js/676.ce96b0fb.chunk.js.map",
     "889.40f07b0e.chunk.css.map": "/filmoteka/static/css/889.40f07b0e.chunk.css.map",
     "889.57eef2ef.chunk.js.map": "/filmoteka/static/js/889.57eef2ef.chunk.js.map",
-    "283.3534b767.chunk.css.map": "/filmoteka/static/css/283.3534b767.chunk.css.map",
+    "283.10586ee2.chunk.css.map": "/filmoteka/static/css/283.10586ee2.chunk.css.map",
     "283.eead1756.chunk.js.map": "/filmoteka/static/js/283.eead1756.chunk.js.map",
-    "931.3534b767.chunk.css.map": "/filmoteka/static/css/931.3534b767.chunk.css.map",
-    "931.17820bed.chunk.js.map": "/filmoteka/static/js/931.17820bed.chunk.js.map",
-    "815.95ce093b.chunk.js.map": "/filmoteka/static/js/815.95ce093b.chunk.js.map",
+    "931.10586ee2.chunk.css.map": "/filmoteka/static/css/931.10586ee2.chunk.css.map",
+    "931.06c0f3ef.chunk.js.map": "/filmoteka/static/js/931.06c0f3ef.chunk.js.map",
+    "815.10586ee2.chunk.css.map": "/filmoteka/static/css/815.10586ee2.chunk.css.map",
+    "815.815b5494.chunk.js.map": "/filmoteka/static/js/815.815b5494.chunk.js.map",
     "667.fa907bf6.chunk.js.map": "/filmoteka/static/js/667.fa907bf6.chunk.js.map",
     "48.2facae87.chunk.js.map": "/filmoteka/static/js/48.2facae87.chunk.js.map",
     "728.a51f1567.chunk.js.map": "/filmoteka/static/js/728.a51f1567.chunk.js.map",
@@ -77,6 +79,6 @@
   },
   "entrypoints": [
     "static/css/main.1e0a7a41.css",
-    "static/js/main.ba5899c8.js"
+    "static/js/main.ecc7c194.js"
   ]
 }
