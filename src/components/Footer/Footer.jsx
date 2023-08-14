@@ -5,7 +5,6 @@ import {
     FaFacebook,
     FaInstagram,
 } from 'react-icons/fa';
-import { AiOutlineMail } from 'react-icons/ai';
 import {
     StyleFooter,
     FooterList,
@@ -52,14 +51,6 @@ const Footer = () => {
                         target="_blank"
                     >
                         <FaInstagram size={20} />
-                    </FooterLink>
-                </FooterItem>
-                <FooterItem>
-                    <FooterLink
-                        href="mailto:g.slavik89@gmail.com"
-                        target="_blank"
-                    >
-                        <AiOutlineMail size={20} />
                     </FooterLink>
                 </FooterItem>
             </FooterList>

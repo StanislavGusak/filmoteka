@@ -10,7 +10,6 @@ import {
     BackDrop,
     BellListWrapper,
     BellWrapper,
-    CardsLoader,
     BellList,
     BellListItem,
     BellImg,

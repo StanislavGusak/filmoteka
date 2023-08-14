@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Swiper } from 'swiper/react';
 import { toast } from 'react-toastify';
 import { Navigation, Scrollbar, Autoplay, Pagination } from 'swiper';
-import Container from '../Container/Container';
 import apiTheMovieDB from '../../services/kinoApi';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
 import Loader from '../Loader/Loader';

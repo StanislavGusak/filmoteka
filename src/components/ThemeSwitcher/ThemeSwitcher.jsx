@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { toggleTheme } from "../../redux/themeSlise";
-import { SwitcherWrapper } from "./ThemeSwitcher.styled";
 import styles from './ThemeSwitcher.module.css';
 
 const ThemeSwitcher = () => {

@@ -102,8 +102,9 @@ export const BtnLogIn = styled.button`
   cursor: pointer;
   transition: var(--transition);
   &:hover {
-    background-image: var(--background-header);
-    color: var(--color);
+    background-color: var(--color);
+    border: 1px solid var(--color);
+    color: var(--border-color);
   }
 `;
 

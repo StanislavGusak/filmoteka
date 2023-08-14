@@ -1,7 +1,6 @@
 import { useState, useEffect, Suspense } from "react";
 import {
     Link,
-    useNavigate,
     useParams,
     useLocation,
     Outlet,

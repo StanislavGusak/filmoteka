@@ -7,9 +7,9 @@ import Container from "../../components/Container/Container";
 import MoviesList from "../../components/MoviesList/MoviesList";
 import Loader from "../../components/Loader/Loader";
 import BackDown from "../../components/BackDown/BackDown";
+import { LanguageContext } from '../../components/LanguageContext/LanguageContext';
 import { TitleTopRating } from './TopRatedPage.styled';
 import css from '../ActorsPage/ActorsPage.module.css';
-import { LanguageContext } from '../../components/LanguageContext/LanguageContext';
 
 const TopRatedPage = () => {
     const [movies, setMovies] = useState([]);

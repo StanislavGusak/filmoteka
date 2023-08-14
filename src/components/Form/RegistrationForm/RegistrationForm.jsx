@@ -24,14 +24,14 @@ const initialValues = {
     password: '',
 };
 
-const diagram = yup.object().shape({
+const schema = yup.object().shape({
     name: yup.string().min(4).max(20).required(),
     email: yup.string().required(),
     password: yup.string().min(10).max(20).required(),
 });
 
-const RegistrationForm = () => {
-    const dispach = useDispatch();
+function RegistrationForm() {
+    const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -39,7 +39,7 @@ const RegistrationForm = () => {
     };
 
     const handleSubmit = (values, { resetForm }) => {
-        dispach(authOperation.register(values));
+        dispatch(authOperation.register(values));
         resetForm();
     };
 
@@ -47,7 +47,7 @@ const RegistrationForm = () => {
         <>
             <Formik
                 initialValues={initialValues}
-                validationSchema={diagram}
+                validationSchema={schema}
                 onSubmit={handleSubmit}
             >
                 <FormRegistration>
@@ -98,7 +98,6 @@ const RegistrationForm = () => {
                 Sign up or log in now and start enjoying the best movies!
             </FormPageDescription>
         </>
-    )
-};
-
+    );
+}
 export default RegistrationForm;

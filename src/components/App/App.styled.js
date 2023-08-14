@@ -25,6 +25,6 @@ export const StyledScrollToTop = styled(ScrollToTop)`
     fill: var(--color);
   }
   &:hover {
-    background: var(--background-body);
+    background: var(--hover-color-text);
   }
 `;

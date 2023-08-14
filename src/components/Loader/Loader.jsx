@@ -13,13 +13,13 @@ const Loader = ({ theme }) => {
             case 'light': setLoaderIcon(LoaderWhite); break;
             default: setLoaderIcon(LoaderBlack);
         }
-    }, []);
+    }, [theme]);
 
     return (
         <img
             className={styles.loader}
             src={loaderIcon}
-            alt='Loading...'
+            alt='Loading'
         />
     )
 }

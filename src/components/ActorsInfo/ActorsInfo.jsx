@@ -5,7 +5,6 @@ import apiTheMovieDB from '../../services/kinoApi';
 import { LanguageContext } from '../LanguageContext/LanguageContext';
 import Loader from '../Loader/Loader';
 import {
-    CardsLoader,
     InfoActorContainer,
     ActorInfoMain,
     ActorsDetalis,

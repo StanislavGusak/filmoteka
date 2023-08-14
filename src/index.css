@@ -39,7 +39,7 @@ body[data-theme='light'] {
   --border: gray;
   --transition: 400ms ease-in-out;
   --box-shadow-header: 0px 2px 8px rgba(10, 223, 38, 0.4);
-  --hover-color-text: rgb(115, 87, 87);
+  --hover-color-text: rgb(195, 202, 191);
   --hover-btn: #414345;
   --light: #d4d3dd;
   --dark: #000000;

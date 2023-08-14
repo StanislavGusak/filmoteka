@@ -13,12 +13,9 @@ import {
 } from './MoviesItem.styled';
 
 function MoviesItem({ poster_path, title, vote_average, release_date }) {
-    const percentRating = vote_average * 10; // convert 0-10 rating to percentage
-    const goldStars = Math.floor(percentRating / 10); // number of gold stars
-    // eslint-disable-next-line no-unused-vars
-    const grayStars = 10 - goldStars; // number of gray stars
+    const percentRating = vote_average * 10;
+    const goldStars = Math.floor(percentRating / 10); 
 
-    // create an array of stars with the appropriate color
     const ratingStars = Array.from({ length: 10 }, (_, i) => {
         if (i < goldStars) {
             return <GoldStar key={`star-${i}`}>&#9733;</GoldStar>;
