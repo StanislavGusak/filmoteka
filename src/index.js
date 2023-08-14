@@ -11,7 +11,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/filmoteka">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <LanguageProvider>
